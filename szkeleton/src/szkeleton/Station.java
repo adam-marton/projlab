@@ -52,7 +52,6 @@ public class Station extends Tile {
     	{
     		//throw new Exception("Ütközés történt");
     	}
-    	trainElement.getOff();
     }
 
     /**
