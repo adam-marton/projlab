@@ -48,11 +48,12 @@ public class Main {
     }
     
     public static void test2() {
-        
+        PlottingBoard pb = new PlottingBoard();
+        Tile tile = new Rail();
+        pb.addTrain(tile);
     }
     
     public static void test3() {
-        
     }
     
     public static void test4() {
@@ -68,7 +69,19 @@ public class Main {
     }
     
     public static void test7() {
-        
+        PlottingBoard pb = new PlottingBoard();
+        System.out.println("7.1 Nyerés, vesztés, kilépés? (N/V/K)");
+        Scanner s = new Scanner(System.in);
+        String input = s.nextLine();
+        if("N".equals(input)) {
+            pb.endGame("Win");
+        } else if("V".equals(input)) {
+            pb.endGame("Lose");
+        } else if("K".equals(input)) {
+            pb.endGame("Exit");
+        } else {
+            throw new IllegalArgumentException("Invalid input!");
+        }
     }
     
 // Andris munkája, egyelőre csak kikommentezem

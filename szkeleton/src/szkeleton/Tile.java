@@ -78,6 +78,7 @@ public abstract class Tile {
      */
     public void setTrain(Train t) {
         this.train = t;
+        moveable = false;
     }
 
     /**

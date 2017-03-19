@@ -15,10 +15,9 @@ public class Train {
     }
     
     /**
-     * @param pos 
-     * @param color
+     * @param pos
      */
-    public Train(Tile pos, Color color) {
+    public Train(Tile pos) {
     	System.out.println("Ich bin egy Train, mit viele TrainElement"); //Train vagyok sok TrainElement-el
     }
 
