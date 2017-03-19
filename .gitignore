@@ -3,5 +3,7 @@ build.xml
 /szkeleton/build/
 /.settings/*
 .project
+/szkeleton/.settings/*
+/szkeleton/.project
 build/
 bin/
