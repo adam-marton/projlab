@@ -6,27 +6,26 @@ package szkeleton;
 public class TunnelEntrance extends Tile {
 
     /**
+     * Az alagútbejárat állapotát tárolja. (Nyitva/Zárva)
+     */
+    private boolean state;
+
+    /**
      * Default constructor
      */
     public TunnelEntrance() {
-    	System.out.println("Mi nombre es TunnelEntrance"); //A nevem TunnelEntrance
     }
-
-    /**
-     * 
-     */
-    private boolean state;
 
     /**
      * @return
      */
     public boolean isActive() {
-        // TODO implement here
+        
         return false;
     }
 
     /**
-     * 
+     * A state field értékét változtatja.
      */
     @Override
     public void changeState() {
@@ -38,6 +37,8 @@ public class TunnelEntrance extends Tile {
      */
     @Override
     public void move() {
-        // TODO implement here
+        if(!isActive()) {
+            
+        }
     }
 }

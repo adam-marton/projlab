@@ -12,8 +12,10 @@ public class Main {
         System.out.println("5: Utasok leszállítása");
         System.out.println("6: Vonatok mozgatása");
         System.out.println("7: Kilépés");
+        System.out.println("0: Kilépés a konzolból");
         Scanner s = new Scanner(System.in);
         String input = s.nextLine();
+        
 
         switch (input) {
             case "1":
@@ -37,6 +39,8 @@ public class Main {
             case "7":
                 test7();
                 break;
+            case "8":
+                
             default:
                 System.out.println("Invalid input!");
         }
