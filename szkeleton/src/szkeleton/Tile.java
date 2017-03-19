@@ -130,8 +130,9 @@ public abstract class Tile {
 
     /**
      * 
+     * @throws szkeleton.CrashException
      */
-    public void move() {
+    public void move() throws CrashException {
         this.train.moveTrain(bDir);
     }
 
