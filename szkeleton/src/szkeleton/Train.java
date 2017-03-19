@@ -15,6 +15,7 @@ public class Train {
     public Train(Tile ps, List<Color> color) {
     	System.out.println("Ich bin egy Train, mit viele TrainElement"); //Train vagyok sok TrainElement-el
     	pos=ps;
+    	pos.setTrain(this);
     	for (Color i : color)
     	{
     		addElement(new TrainElement(null,i));
@@ -59,16 +60,24 @@ public class Train {
      */
     public void setPos(Tile ps) {
         prevPos=pos;
+        prevPos.setTrain(null);
     	pos=ps;
-        
+        pos.setTrain(this);
     }
 
     /**
      * @param pos A kovetkező mező
-     * Mozgatja a vonatot a következő mezőre
+     * Mozgatja a vonatot a következő mezőre, kijelöli hogy melyik vagonról szállhatnak le az utasok.
      */
     public void moveTrain(Tile ps) {
-        setPos(ps);
+    	prevPos=pos;
+        prevPos.setTrain(null);
+    	pos=ps;
+        pos.setTrain(this);
+        int j=0;
+        while(elements.get(j).isEmpty())
+        	j++;
+        elements.get(j).SetNextToFree();
         elements.get(0).move(prevPos);
         for (int i=1; i<elements.size(); i++)
         {

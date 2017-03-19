@@ -6,96 +6,110 @@ package szkeleton;
 public class TrainElement {
 
     /**
-     * Default constructor
-     */
-    public TrainElement() {
-    	System.out.println("Mi chiamo TrainElement");
-    }
-
-    /**
      * @param pos 
      * @param color
+     * A vagon konstruktora, létrehozza a vagont a kapott színnel
      */
-    public TrainElement(Tile pos, Color color) {
-    	System.out.println("Mi chiamo TrainElement, con colore: " + color); //TrainElement vagyok ezzel a sz�nnel: ...
+    public TrainElement(Tile ps, Color clr) {
+    	System.out.println("[TrainElement].TrainElement()");
+    	pos=ps;
+    	pos.setElement(this);
+    	color=clr;
     }
     
     /**
-     * 
+     * a TrainElement jelenlegi pozíciója
      */
     private Tile pos;
 
     /**
-     * 
+     * a TrainElement előző pozíciója
      */
     private Tile prevPos;
 
     /**
-     * 
+     * a TrainElement színe
      */
     private Color color;
 
     /**
-     * 
+     * tárolja, hogy már lezsálltak-e az utasok
+     * vagyis, hogy a kocsi üres
      */
     private boolean empty;
 
     /**
-     * 
+     * megadja, hogy a kocsit megelőző összes vagon üres-e
      */
     private boolean nextToFree;
 
     /**
-     * @return
+     * visszatér a vagon jelenlegi pozíciójával
      */
     public Tile getPosition() {
-        // TODO implement here
-        return null;
+    	System.out.println("[TrainElement].getPosition()");
+        return pos;
     }
 
     /**
-     * @return
+     * visszatér a vagon előző pozíciójával
      */
     public Tile getPrevPos() {
-        // TODO implement here
-        return null;
+    	System.out.println("[TrainElement].getPrevPos()");
+        return prevPos;
     }
 
     /**
      * @param pos
      */
-    public void move(Tile pos) {
-        // TODO implement here
+    public void move(Tile ps) {
+    	System.out.println("[TrainElement].move()");
+    	prevPos = pos;
+    	prevPos.setElement(null);
+    	pos = ps;
+    	pos.setElement(this);
     }
 
     /**
-     * 
+     * megpróbálja leszállítani az utasokat
      */
     public void getOff() {
-        // TODO implement here
+    	System.out.println("[TrainElement].getOff()");
+    	if (isNextToFree())
+    		{
+    		empty=true;
+    		}
     }
 
     /**
-     * @return
+     * visszaadja a vagon színét
      */
     public Color getColor() {
-        // TODO implement here
+    	System.out.println("[TrainElement].getColor()");
         return color;
     }
 
     /**
-     * @return
+     * igazzal tér vissza ha a vagon üres,
      */
     public boolean isEmpty() {
-        // TODO implement here
-        return false;
+    	System.out.println("[TrainElement].isEmpty()");
+        return empty;
     }
 
     /**
-     * @return
+     * igazzal tér vissza ha az összes ezt megelőző vagon üres.
+     * egyébként hamissal
      */
     public boolean isNextToFree() {
-        // TODO implement here
-        return false;
+    	System.out.println("[TrainElement].isNextToFree()");
+        return nextToFree;
+    }
+
+    /**
+     * Igazra állítja a változó értékét ha az összes ezt megelőző vagon üres
+     */
+    public void SetNextToFree() {
+    	nextToFree=true;
     }
 }
