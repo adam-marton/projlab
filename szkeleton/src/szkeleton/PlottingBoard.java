@@ -1,20 +1,21 @@
 package szkeleton;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+import java.util.logging.Logger;
 
 /**
  * 
  */
 public class PlottingBoard {
 	
-	/**
-     * 
-     */
-    private ArrayList<Train> trains;
-
     /**
      * 
      */
+    private List<Train> trains = new ArrayList<Train>();
+  
     private Level currentLevel;
 
     /**
@@ -57,9 +58,13 @@ public class PlottingBoard {
 
     /**
      * 
+     * @param s
      */
-    public void endGame() {
+    public void endGame(String s) {
         System.out.println("endGame");
+        if("Exit".equals(s)) {
+            System.exit(0);
+        }
     }
 
     /**
@@ -72,19 +77,36 @@ public class PlottingBoard {
 
     /**
      * @param startingPos 
-     * @param color
      */
+// adam.marton
+/*
+    public void addTrain(Tile startingPos) {
+        System.out.println("2.1 Hány vagonból áll a vonat?");
+        Scanner s = new Scanner(System.in);
+        Integer input = 0;
+        try {
+        input = s.nextInt();
+        } catch(NoSuchElementException e) {
+            Logger.getLogger(PlottingBoard.class.getName()).severe(e.toString());
+        }
+        Train train = new Train(startingPos);
+        TrainElement trainElement = new TrainElement(startingPos, Color.BLUE);
+        for(int i = 0; i < input; i++) {
+            train.addElement(trainElement);
+        }
+        trains.add(train);
+*/
+  // aviscii
     public void addTrain(Tile startingPos, ArrayList<Color> colors) {
-    	System.out.println("addTrain");
-    	Train train = new Train();
-    	train.setPos(startingPos);
-    	Tile currentTile= startingPos;
-    	for (Color color : colors) {
-    		currentTile = currentTile.getDirA();
-			TrainElement trainelement = new TrainElement(currentTile, color);
-			train.addElement(trainelement);
-		}
-    	this.trains.add(train);
-    	
+        System.out.println("addTrain");
+        Train train = new Train();
+        train.setPos(startingPos);
+        Tile currentTile= startingPos;
+        for (Color color : colors) {
+            currentTile = currentTile.getDirA();
+            TrainElement trainelement = new TrainElement(currentTile, color);
+            train.addElement(trainelement);
+        }
+        this.trains.add(train);
     }
 }
