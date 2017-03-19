@@ -23,11 +23,11 @@ public class Switch extends Tile {
     private Tile cDir;
 
     /**
+     * visszaadja az éppen aktuális kimeneti irányt
      * @return
      */
     public Tile getActiveDir() {
-        // TODO implement here
-        return null;
+        return activeDir;
     }
 
     /**

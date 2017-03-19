@@ -33,7 +33,7 @@ public class TrainElement {
     /**
      * 
      */
-    private String color;
+    private Color color;
 
     /**
      * 
@@ -78,9 +78,9 @@ public class TrainElement {
     /**
      * @return
      */
-    public String getColor() {
+    public Color getColor() {
         // TODO implement here
-        return "";
+        return color;
     }
 
     /**

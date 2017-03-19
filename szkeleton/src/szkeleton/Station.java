@@ -7,37 +7,49 @@ public class Station extends Tile {
 
     /**
      * Default constructor
+     * kiírja, hogy Station
      */
     public Station() {
-    	System.out.println("Én lenni Station"); //ez tökéletesen érthető
+    	System.out.println("Station");
     }
     
     /**
+     * kiírja, hogy Station és a színét
      * @param color
      */
-    public Station(String color) {
-    	System.out.println("Én lenni Station, ilyen színnel: " + color); //ez tökéletesen érthető
+    public Station(Color color) {
+    	System.out.println("Station, szín:" + color);
     }
 
     /**
-     * 
+     * a Station színét tároljuk
      */
-    private String color;
+    private Color color;
 
     /**
-     * @return
+     * visszaadja a Station színét, ami tökéletes az éppen az állomás előtt
+     * elhaladó kocsik színének az ellenőrzéséhez
      */
-    public String getColor() {
-        // TODO implement here
-        return "";
+    public Color getColor() {
+        return color;
     }
 
     /**
-     * 
+     * a rajta álló mozdony mozgatásáért felelős függvényt hívja meg,
+     * ha az még nem mozgott ebben a ciklusban
+     * megnézi, hogy a rajta lévő vonat előző pozíciója melyik mezővel
+     * egyezik meg és a másik irányba küldi tovább
+     * ha egyik irányba se tud a vonat továbbmenni -> ütközés
      */
     @Override
     public void move() {
-        // TODO implement here
+    	if(train.getPrevPos() == getDirA() && getDirB().isFree())
+    		train.moveTrain(getDirB());
+    	else if(train.getPrevPos() == getDirB() && getDirA().isFree())
+    		train.moveTrain(getDirA());
+    	else
+    		//throw new Exception("Ütközés történt");
+    		trainElement.getOff();
     }
 
     /**
@@ -45,6 +57,12 @@ public class Station extends Tile {
      */
     @Override
     public void setElement(TrainElement e) {
-        // TODO implement here
+        trainElement = e;
+        Color c = trainElement.getColor();
+        color = getColor();
+        if(c == color)
+        {
+        	trainElement.getOff();
+        }
     }
 }
