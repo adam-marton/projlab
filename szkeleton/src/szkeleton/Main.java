@@ -49,7 +49,7 @@ public class Main {
     
     public static void test2() {
         PlottingBoard pb = new PlottingBoard();
-        Tile tile = new Rail();
+        Tile tile = new Rail(true);
         pb.addTrain(tile);
     }
     

@@ -18,6 +18,7 @@ public class Station extends Tile {
      * @param color
      */
     public Station(Color color) {
+    	this.color = color;
     	System.out.println("Station, szín:" + color);
     }
 
@@ -48,12 +49,16 @@ public class Station extends Tile {
     	else if(train.getPrevPos() == getDirB() && getDirA().isFree())
     		train.moveTrain(getDirA());
     	else
+    	{
     		//throw new Exception("Ütközés történt");
-    		trainElement.getOff();
+    	}
+    	trainElement.getOff();
     }
 
     /**
-     * @param e
+     * beállítja a paraméterül kapott TrainElement-et a Tile TraimElement-jeként
+     * és megnézi, hogy megegyezik-e a színe a Station színével
+     * és ha igen, akkor meghívja a TrainElement getOff() függvényét
      */
     @Override
     public void setElement(TrainElement e) {
