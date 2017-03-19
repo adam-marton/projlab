@@ -1,77 +1,90 @@
 package szkeleton;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * 
  */
 public class PlottingBoard {
-
-    /**
-     * Default constructor
-     */
-    public PlottingBoard() {
-    }
-
-    /**
+	
+	/**
      * 
      */
-    private List<Train> trains;
+    private ArrayList<Train> trains;
 
     /**
      * 
      */
     private Level currentLevel;
 
+    /**
+     * Default constructor
+     */
+    public PlottingBoard() {
+    	this.trains = new ArrayList<Train>();
+    }
+
     
     /**
      * 
      */
     public void deleteTrains() {
-        // TODO implement here
+    	System.out.println("deleteTrains");
+    	this.trains = new ArrayList<Train>();
     }
 
     /**
      * 
      */
     public void setNextLevel() {
-        // TODO implement here
+    	System.out.println("setNextLevel");
     }
 
     /**
      * @return
      */
     public Level getLevel() {
-        // TODO implement here
-        return null;
+    	System.out.println("getLevel");
+        return this.currentLevel;
     }
 
     /**
      * 
      */
     public void startGame() {
-        // TODO implement here
+        System.out.println("startGame");
     }
 
     /**
      * 
      */
     public void endGame() {
-        // TODO implement here
+        System.out.println("endGame");
     }
 
     /**
      * 
      */
     public void run() {
-        // TODO implement here
+    	System.out.println("run");
+    	this.currentLevel.moveAll();
     }
 
     /**
      * @param startingPos 
      * @param color
      */
-    public void addTrain(Tile startingPos, Color color) {
-        // TODO implement here
+    public void addTrain(Tile startingPos, ArrayList<Color> colors) {
+    	System.out.println("addTrain");
+    	Train train = new Train();
+    	train.setPos(startingPos);
+    	Tile currentTile= startingPos;
+    	for (Color color : colors) {
+    		currentTile = currentTile.getDirA();
+			TrainElement trainelement = new TrainElement(currentTile, color);
+			train.addElement(trainelement);
+		}
+    	this.trains.add(train);
+    	
     }
 }
