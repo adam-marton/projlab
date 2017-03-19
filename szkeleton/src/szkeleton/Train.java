@@ -15,16 +15,22 @@ public class Train {
     }
     
     /**
-     * @param pos
+     * @param pos 
+     * @param color
      */
-    public Train(Tile pos) {
+    public Train(Tile ps, List<Color> color) {
     	System.out.println("Ich bin egy Train, mit viele TrainElement"); //Train vagyok sok TrainElement-el
-    }
+    	pos=ps;
+    	for (Color i : color)
+    	{
+    		
+    	}
+    	}
 
     /**
      * 
      */
-    private List<TrainElement> elements;
+    private List<TrainElement> elements=new List<TrainElement>();
 
     /**
      * 
