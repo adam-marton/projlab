@@ -1,6 +1,8 @@
 package szkeleton;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class Main {
 
@@ -44,7 +46,8 @@ public class Main {
     }
     
     public static void test1() {
-        
+        PlottingBoard pb = new PlottingBoard();
+        pb.startGame();
     }
     
     public static void test2() {
@@ -54,6 +57,26 @@ public class Main {
     }
     
     public static void test3() {
+        Tile bDir = new Rail(true);
+        Tile cDir = new Rail(true);
+        Switch sw;
+        Integer input = 0;
+        try {
+            Scanner s = new Scanner(System.in);
+            input = s.nextInt();
+        } catch(NoSuchElementException e) {
+            Logger.getLogger(Main.class.getName()).severe(e.toString());
+        };
+        if(1 == input) {
+            sw = new Switch(bDir);
+        } else if(2 == input) {
+            sw = new Switch(cDir);
+        } else {
+            throw new IllegalArgumentException("Invalid input!");
+        }
+        sw.setDirB(bDir);
+        sw.setDirC(cDir);
+        sw.changeState();
     }
     
     public static void test4() {

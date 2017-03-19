@@ -9,8 +9,9 @@ public class Switch extends Tile {
      * Default constructor
      * kiírja a konzolra, hogy Switch
      */
-    public Switch() {
+    public Switch(Tile activeDir) {
     	System.out.println("Switch");
+        this.activeDir = activeDir;
     }
 
     /**
