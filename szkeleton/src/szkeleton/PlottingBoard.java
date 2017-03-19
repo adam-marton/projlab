@@ -10,51 +10,50 @@ import java.util.logging.Logger;
  * 
  */
 public class PlottingBoard {
+	
+    /**
+     * 
+     */
+    private List<Train> trains = new ArrayList<Train>();
+  
+    private Level currentLevel;
 
     /**
      * Default constructor
      */
     public PlottingBoard() {
+    	this.trains = new ArrayList<Train>();
     }
-
-    /**
-     * 
-     */
-    private List<Train> trains = new ArrayList<Train>();
-
-    /**
-     * 
-     */
-    private Level currentLevel;
 
     
     /**
      * 
      */
     public void deleteTrains() {
-        // TODO implement here
+    	System.out.println("deleteTrains");
+    	this.trains = new ArrayList<Train>();
     }
 
     /**
      * 
      */
     public void setNextLevel() {
-        // TODO implement here
+    	System.out.println("setNextLevel");
     }
 
     /**
      * @return
      */
     public Level getLevel() {
-        // TODO implement here
-        return null;
+    	System.out.println("getLevel");
+        return this.currentLevel;
     }
 
     /**
      * 
      */
     public void startGame() {
-        // TODO implement here
+        System.out.println("startGame");
     }
 
     /**
@@ -62,6 +61,7 @@ public class PlottingBoard {
      * @param s
      */
     public void endGame(String s) {
+        System.out.println("endGame");
         if("Exit".equals(s)) {
             System.exit(0);
         }
@@ -71,12 +71,15 @@ public class PlottingBoard {
      * 
      */
     public void run() {
-        // TODO implement here
+    	System.out.println("run");
+    	this.currentLevel.moveAll();
     }
 
     /**
      * @param startingPos 
      */
+// adam.marton
+/*
     public void addTrain(Tile startingPos) {
         System.out.println("2.1 Hány vagonból áll a vonat?");
         Scanner s = new Scanner(System.in);
@@ -92,5 +95,18 @@ public class PlottingBoard {
             train.addElement(trainElement);
         }
         trains.add(train);
+*/
+  // aviscii
+    public void addTrain(Tile startingPos, ArrayList<Color> colors) {
+        System.out.println("addTrain");
+        Train train = new Train();
+        train.setPos(startingPos);
+        Tile currentTile= startingPos;
+        for (Color color : colors) {
+            currentTile = currentTile.getDirA();
+            TrainElement trainelement = new TrainElement(currentTile, color);
+            train.addElement(trainelement);
+        }
+        this.trains.add(train);
     }
 }
