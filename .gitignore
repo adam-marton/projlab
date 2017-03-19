@@ -1,6 +1,6 @@
 nbproject/
 build.xml
-/.settings/*
-.project
+/szkeleton/.settings/*
+/szkeleton/.project
 build/
 bin/

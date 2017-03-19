@@ -14,27 +14,28 @@ public class Main {
         System.out.println("7: Kilépés");
         Scanner s = new Scanner(System.in);
         String input = s.nextLine();
+        int command = Integer.parseInt(input);
 
-        switch (input) {
-            case "1":
+        switch (command) {
+            case 1:
                 test1();
                 break;
-            case "2":
+            case 2:
                 test2();
                 break;
-            case "3":
+            case 3:
                 test3();
                 break;
-            case "4":
+            case 4:
                 test4();
                 break;
-            case "5":
+            case 5:
                 test5();
                 break;
-            case "6":
+            case 6:
                 test6();
                 break;
-            case "7":
+            case 7:
                 test7();
                 break;
             default:
