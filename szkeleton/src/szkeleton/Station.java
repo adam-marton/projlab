@@ -18,6 +18,7 @@ public class Station extends Tile {
      * @param color
      */
     public Station(Color color) {
+    	this.color = color;
     	System.out.println("Station, szín:" + color);
     }
 
