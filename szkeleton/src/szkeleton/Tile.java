@@ -8,12 +8,6 @@ import java.util.Scanner;
 public abstract class Tile {
 
     /**
-     * Default constructor
-     */
-    public Tile() {
-    }
-
-    /**
      * A mező egyik szomszédja.
      */
     private Tile aDir;
@@ -39,13 +33,20 @@ public abstract class Tile {
      */
     private boolean moveable;
 
+    /**
+     * Default constructor
+     */
+    public Tile() {
+    }
 
     /**
      * Beállítja az aDir field értékét a kapott Tile értékére.
      * @param t
      */
     public void setDirA(Tile t) {
+    	System.out.println(">[Tile].setDirA()");
         this.aDir = t;
+    	System.out.println("<[Tile].setDirA()");
     }
 
     /**
@@ -53,7 +54,9 @@ public abstract class Tile {
      * @param t
      */
     public void setDirB(Tile t) {
+    	System.out.println(">[Tile].setDirB()");
         this.bDir = t;
+    	System.out.println("<[Tile].setDirB()");
     }
 
     /**
@@ -61,6 +64,8 @@ public abstract class Tile {
      * @return
      */
     public Tile getDirA() {
+    	System.out.println(">[Tile].getDirA()");
+    	System.out.println("<[Tile].getDirA()");
         return this.aDir;
     }
 
@@ -69,6 +74,8 @@ public abstract class Tile {
      * @return
      */
     public Tile getDirB() {
+    	System.out.println(">[Tile].getDirB()");
+    	System.out.println("<[Tile].getDirB()");
         return this.bDir;
     }
 
@@ -77,8 +84,10 @@ public abstract class Tile {
      * @param t
      */
     public void setTrain(Train t) {
+    	System.out.println(">[Tile].setTrain()");
         this.train = t;
         moveable = false;
+    	System.out.println("<[Tile].setTrain()");
     }
 
     /**
@@ -86,7 +95,9 @@ public abstract class Tile {
      * @param e
      */
     public void setElement(TrainElement e) {
+    	System.out.println(">[Tile].setElement()");
         this.trainElement = e;
+    	System.out.println("<[Tile].setElement()");
     }
 
     /**
@@ -96,9 +107,11 @@ public abstract class Tile {
      * @return True, ha történik ütközés. False, ha nem.
      */
     public boolean checkCrash() {
+    	System.out.println(">[Tile].chechCrash()");
         System.out.println("Van a vonat előtt valamilyen akadály?");
         Scanner s = new Scanner(System.in);
         String input = s.nextLine();
+    	System.out.println("<[Tile].checkCrash()");
         if("I".equals(input)) {
             return true;
         } else if("N".equals(input)) {
@@ -112,6 +125,8 @@ public abstract class Tile {
      * @return
      */
     public boolean isMovable() {
+    	System.out.println(">[Tile].isMovable()");
+    	System.out.println("<[Tile].isMovable()");
         return moveable;
     }
 
@@ -119,6 +134,8 @@ public abstract class Tile {
      * @return
      */
     public boolean isFree() {
+    	System.out.println(">[Tile].isFree()");
+    	System.out.println("<[Tile].isFree()");
         return null == train;
     }
 
@@ -126,7 +143,9 @@ public abstract class Tile {
      * Üres metódus, a leszármazottak felülírják, ha szükséges.
      */
     public void changeState() {
+    	System.out.println(">[Tile].changeState()");
         // empty on purpose
+    	System.out.println("<[Tile].changeState()");
     }
 
     /**
@@ -134,13 +153,17 @@ public abstract class Tile {
      * @throws szkeleton.CrashException
      */
     public void move() throws CrashException {
+    	System.out.println(">[Tile].move()");
         this.train.moveTrain(bDir);
+    	System.out.println("<[Tile].move()");
     }
 
     /**
      * A moveable field értékét igazra állítja.
      */
     public void enableMove() {
+    	System.out.println(">[Tile].enableMove()");
         this.moveable = true;
+    	System.out.println("<[Tile].enableMove()");
     }
 }

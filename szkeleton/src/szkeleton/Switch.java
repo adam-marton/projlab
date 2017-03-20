@@ -1,18 +1,9 @@
 package szkeleton;
 
 /**
- * 
+ *
  */
 public class Switch extends Tile {
-
-    /**
-     * Default constructor
-     * kiírja a konzolra, hogy Switch
-     */
-    public Switch(Tile activeDir) {
-    	System.out.println("Switch");
-        this.activeDir = activeDir;
-    }
 
     /**
      * a Switch aktív kimeneti iránya
@@ -25,19 +16,35 @@ public class Switch extends Tile {
     private Tile cDir;
 
     /**
+     * Default constructor kiírja a konzolra, hogy Switch
+     *
+     * @param activeDir
+     */
+    public Switch(Tile activeDir) {
+        System.out.println("Switch");
+        this.activeDir = activeDir;
+    }
+
+    /**
      * visszaadja az éppen aktuális kimeneti irányt
+     *
      * @return
      */
     public Tile getActiveDir() {
+        System.out.println(">[Switch].getActiveDir()");
+        System.out.println("<[Switch].getActiveDir()");
         return activeDir;
     }
 
     /**
      * beállítja a harmadik irányt a kapott paraméternek
+     *
      * @param t
      */
     public void setDirC(Tile t) {
+        System.out.println(">[Switch].setDirC()");
         cDir = t;
+        System.out.println("<[Switch].setDirC()");
     }
 
     /**
@@ -45,32 +52,32 @@ public class Switch extends Tile {
      */
     @Override
     public void changeState() {
-        if(activeDir == getDirB())
-        {
-        	activeDir = cDir;
+    	System.out.println(">[Switch].changeState()");
+        if (activeDir == getDirB()) {
+            activeDir = cDir;
+        } else if (activeDir == cDir) {
+            activeDir = getDirB();
         }
-        else if(activeDir == cDir)
-        {
-        	activeDir = getDirB();
-        }
+    	System.out.println("<[Switch].changeState()");
     }
 
     /**
-     *	a rajta álló mozdony mozgatásáért felelős függvényt hívja meg,
-     * ha az még nem mozgott ebben a ciklusban
-     * megnézi, hogy a rajta lévő vonat előző pozíciója melyik mezővel
-     * egyezik meg és a másik irányba küldi tovább
-     * ha egyik irányba se tud a vonat továbbmenni -> ütközés
+     * a rajta álló mozdony mozgatásáért felelős függvényt hívja meg, ha az még
+     * nem mozgott ebben a ciklusban megnézi, hogy a rajta lévő vonat előző
+     * pozíciója melyik mezővel egyezik meg és a másik irányba küldi tovább ha
+     * egyik irányba se tud a vonat továbbmenni -> ütközés
+     * @throws szkeleton.CrashException
      */
     @Override
-    public void move() {
-    	if(train.getPrevPos() == getDirA() && activeDir.isFree())
-    		train.moveTrain(activeDir);
-    	else if(train.getPrevPos() == getDirB() && activeDir.isFree())
-    		train.moveTrain(activeDir);
-    	else
-    	{
-    		//throw new Exception("Ütközés történt");
-    	}
+    public void move() throws CrashException {
+    	System.out.println(">[Switch].move()");
+        if (train.getPrevPos() == getDirA() && activeDir.isFree()) {
+            train.moveTrain(activeDir);
+        } else if (train.getPrevPos() == getDirB() && activeDir.isFree()) {
+            train.moveTrain(activeDir);
+        } else {
+            throw new CrashException();
+        }
+    	System.out.println("<[Switch].move()");
     }
 }

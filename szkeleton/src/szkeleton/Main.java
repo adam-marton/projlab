@@ -1,5 +1,7 @@
 package szkeleton;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -53,7 +55,19 @@ public class Main {
     public static void test2() {
         PlottingBoard pb = new PlottingBoard();
         Tile tile = new Rail(true);
-        pb.addTrain(tile);
+        System.out.println("2.1 Hány vagonból áll a vonat?");
+        Scanner s = new Scanner(System.in);
+        Integer input = 0;
+        try {
+        input = s.nextInt();
+        } catch(NoSuchElementException e) {
+            Logger.getLogger(PlottingBoard.class.getName()).severe(e.toString());
+        }
+        List<Color> colors = new ArrayList<Color>();
+        for(int i = 0; i < input; i++) {
+            colors.add(Color.RED);
+        }
+        pb.addTrain(tile, colors);
     }
     
     public static void test3() {
@@ -66,7 +80,7 @@ public class Main {
             input = s.nextInt();
         } catch(NoSuchElementException e) {
             Logger.getLogger(Main.class.getName()).severe(e.toString());
-        };
+        }
         if(1 == input) {
             sw = new Switch(bDir);
         } else if(2 == input) {

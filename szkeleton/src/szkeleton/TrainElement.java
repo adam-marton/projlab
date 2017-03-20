@@ -1,22 +1,10 @@
 package szkeleton;
 
 /**
- * 
+ *
  */
 public class TrainElement {
 
-    /**
-     * @param pos 
-     * @param color
-     * A vagon konstruktora, létrehozza a vagont a kapott színnel
-     */
-    public TrainElement(Tile ps, Color clr) {
-    	System.out.println("[TrainElement].TrainElement()");
-    	pos=ps;
-    	pos.setElement(this);
-    	color=clr;
-    }
-    
     /**
      * a TrainElement jelenlegi pozíciója
      */
@@ -33,8 +21,7 @@ public class TrainElement {
     private Color color;
 
     /**
-     * tárolja, hogy már lezsálltak-e az utasok
-     * vagyis, hogy a kocsi üres
+     * tárolja, hogy már lezsálltak-e az utasok vagyis, hogy a kocsi üres
      */
     private boolean empty;
 
@@ -44,72 +31,98 @@ public class TrainElement {
     private boolean nextToFree;
 
     /**
+     * @param pos
+     * @param color A vagon konstruktora, létrehozza a vagont a kapott színnel
+     */
+    public TrainElement(Tile pos, Color color) {
+        System.out.println("TrainElement");
+        this.pos = pos;
+        this.pos.setElement(this);
+        this.color = color;
+    }
+
+    /**
      * visszatér a vagon jelenlegi pozíciójával
+     *
+     * @return
      */
     public Tile getPosition() {
-    	System.out.println("[TrainElement].getPosition()");
-        return pos;
+        System.out.println(">[TrainElement].getPosition()");
+        System.out.println("<[TrainElement].getPosition()");
+        return this.pos;
     }
 
     /**
      * visszatér a vagon előző pozíciójával
+     *
+     * @return
      */
     public Tile getPrevPos() {
-    	System.out.println("[TrainElement].getPrevPos()");
-        return prevPos;
+        System.out.println(">[TrainElement].getPrevPos()");
+        System.out.println("<[TrainElement].getPrevPos()");
+        return this.prevPos;
     }
 
     /**
      * @param pos
      */
-    public void move(Tile ps) {
-    	System.out.println("[TrainElement].move()");
-    	prevPos = pos;
-    	prevPos.setElement(null);
-    	pos = ps;
-    	pos.setElement(this);
+    public void move(Tile pos) {
+        System.out.println(">[TrainElement].move()");
+        this.prevPos = this.pos;
+        this.prevPos.setElement(null);
+        this.pos = pos;
+        this.pos.setElement(this);
+        System.out.println("<[TrainElement].move()");
     }
 
     /**
      * megpróbálja leszállítani az utasokat
      */
     public void getOff() {
-    	System.out.println("[TrainElement].getOff()");
-    	if (isNextToFree())
-    		{
-    		empty=true;
-    		}
+        System.out.println(">[TrainElement].getOff()");
+        if (isNextToFree()) {
+            this.empty = true;
+        }
+        System.out.println("<[TrainElement].getOff()");
     }
 
     /**
      * visszaadja a vagon színét
+     * @return 
      */
     public Color getColor() {
-    	System.out.println("[TrainElement].getColor()");
-        return color;
+        System.out.println(">[TrainElement].getColor()");
+        System.out.println("<[TrainElement].getColor()");
+        return this.color;
     }
 
     /**
      * igazzal tér vissza ha a vagon üres,
+     * @return 
      */
     public boolean isEmpty() {
-    	System.out.println("[TrainElement].isEmpty()");
-        return empty;
+        System.out.println(">[TrainElement].isEmpty()");
+        System.out.println("<[TrainElement].isEmpty()");
+        return this.empty;
     }
 
     /**
-     * igazzal tér vissza ha az összes ezt megelőző vagon üres.
-     * egyébként hamissal
+     * igazzal tér vissza ha az összes ezt megelőző vagon üres. egyébként
+     * hamissal
+     * @return 
      */
     public boolean isNextToFree() {
-    	System.out.println("[TrainElement].isNextToFree()");
-        return nextToFree;
+        System.out.println(">[TrainElement].isNextToFree()");
+        System.out.println("<[TrainElement].isNextToFree()");
+        return this.nextToFree;
     }
 
     /**
      * Igazra állítja a változó értékét ha az összes ezt megelőző vagon üres
      */
     public void SetNextToFree() {
-    	nextToFree=true;
+        System.out.println(">[TrainElement].setNextToFree()");
+        this.nextToFree = true;
+        System.out.println("<[TrainElement].setNextToFree()");
     }
 }
