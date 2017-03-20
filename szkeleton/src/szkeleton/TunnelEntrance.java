@@ -52,10 +52,12 @@ public class TunnelEntrance extends Tile {
             if(TunnelEntranceCounter.getInstance().getCounter() < 2) {
                 state = true;
                 TunnelEntranceCounter.getInstance().addCounter(1);
+                System.out.println("<[TunnelEntrance].Kinyitás");
             }
         } else {
             state = false;
             TunnelEntranceCounter.getInstance().addCounter(-1);
+            System.out.println("<[TunnelEntrance].Bezárás");
         }
         System.out.println("<[TunnelEntrance].changeState()");
     }

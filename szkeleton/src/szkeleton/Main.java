@@ -10,8 +10,8 @@ public class Main {
 
     public static void main(String[] args) {
         
-        boolean exitmenu=false;
-        while (!exitmenu){
+        	Scanner m= new Scanner(System.in);
+        	String input;
         	System.out.println("1: Játék indítása");
             System.out.println("2: Vonat hozzáadása");
             System.out.println("3: Váltó állítása");
@@ -19,8 +19,7 @@ public class Main {
             System.out.println("5: Utasok leszállítása");
             System.out.println("6: Vonatok mozgatása");
             System.out.println("7: Kilépés");
-            Scanner s = new Scanner(System.in);
-            String input = s.nextLine();
+            input = m.nextLine();
             int command = Integer.parseInt(input);
         switch (command) {
             case 1:
@@ -43,12 +42,9 @@ public class Main {
                 break;
             case 7:
                 test7();
-                exitmenu=true;
                 break;
             default:
                 System.out.println("Invalid input!");
-        }
-        s.close();
         }
         System.out.println("Terminate");
     }
@@ -60,6 +56,7 @@ public class Main {
     
     public static void test2() {
         PlottingBoard pb = new PlottingBoard();
+        pb.startGame();
         Tile tile = new Rail(true);
         System.out.println("2.1 Hány vagonból áll a vonat?");
         Scanner s = new Scanner(System.in);
@@ -83,7 +80,7 @@ public class Main {
         Switch sw;
         Integer input = 0;
         try {
-            System.out.println("3.1 Merre áll a váltó?");
+            System.out.println("3.1 Merre áll a váltó? (1/2)");
             Scanner s = new Scanner(System.in);
             input = s.nextInt();
             s.close();
@@ -108,20 +105,18 @@ public class Main {
         System.out.println("4.1 Az alagút nyitva van? (I/N)");
         Scanner s1 = new Scanner(System.in);
         String input1 = s1.nextLine();
-        s1.close();
         Integer input2 = 0;
         try {
             System.out.println("4.2 Jelenleg hány alagút bejárat aktív? (0/1/2)");
             Scanner s2 = new Scanner(System.in);
             input2 = s2.nextInt();
-            s2.close();
         } catch(NoSuchElementException e) {
             Logger.getLogger(Main.class.getName()).severe(e.toString());
         }
-        if("I".equals(input1)) {
+        if("I".equals(input1.toUpperCase())) {
             te.changeState();
             TunnelEntranceCounter.getInstance().addCounter(input2-1);
-        } else if("N".equals(input1)) {
+        } else if("N".equals(input1.toUpperCase())) {
             TunnelEntranceCounter.getInstance().addCounter(input2);
         }
         te.changeState();

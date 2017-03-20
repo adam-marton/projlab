@@ -37,7 +37,8 @@ public class TrainElement {
     public TrainElement(Tile pos, Color color) {
         System.out.println("TrainElement");
         this.pos = pos;
-        this.pos.setElement(this);
+        if (this.pos!=null)
+        	this.pos.setElement(this);
         this.color = color;
         this.empty=false;
     }
