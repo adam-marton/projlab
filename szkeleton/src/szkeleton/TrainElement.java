@@ -71,6 +71,7 @@ public class TrainElement {
     public void move(Tile pos) {
         System.out.println(">[TrainElement].move()");
         this.prevPos = this.pos;
+        if (prevPos!=null)
         this.prevPos.setElement(null);
         this.pos = pos;
         this.pos.setElement(this);
@@ -83,7 +84,10 @@ public class TrainElement {
     public void getOff() {
         System.out.println(">[TrainElement].getOff()");
         if (isNextToFree()) {
+        	if (!isEmpty()) {
             this.empty = true;
+            System.out.println("<[TrainElement].Kiürítés");
+        	}
         }
         System.out.println("<[TrainElement].getOff()");
     }
@@ -107,7 +111,15 @@ public class TrainElement {
         System.out.println("<[TrainElement].isEmpty()");
         return this.empty;
     }
-
+    
+    /**
+     * csak a teszteléshez kell
+     */
+    public void setEmpty() {
+        System.out.println(">[TrainElement].SetEmpty()");
+        System.out.println("<[TrainElement].SetEmpty()");
+        this.empty=true;
+    }
     /**
      * igazzal tér vissza ha az összes ezt megelőző vagon üres. egyébként
      * hamissal

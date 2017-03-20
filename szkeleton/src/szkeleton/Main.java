@@ -120,8 +120,73 @@ public class Main {
         te.changeState();
     }
     
-    public static void test5() {
-        
+    public static void test5() {   	
+            System.out.println("5.1 A vagon állomáson van? (I/N)");
+            Scanner s1 = new Scanner(System.in);
+            String input1 = s1.nextLine();
+            if("N".equals(input1.toUpperCase()))															//5.1
+            {
+            	TrainElement vagon=new TrainElement(null, Color.RED);
+            } 
+            else if("I".equals(input1.toUpperCase())) 
+            {
+                Tile tile = new Station(Color.RED);
+                System.out.println("5.2 A vagon színe megegyezik az állomás Szinével? (I/N)");
+                Scanner s2 = new Scanner(System.in);
+                String input2 = s2.nextLine();
+                if("N".equals(input2.toUpperCase()))														//5.2
+                {
+                	TrainElement vagon=new TrainElement(null, Color.BLUE);
+                	vagon.move(tile);
+                	System.out.println("A vonat áthaladt");
+                }
+                else if("I".equals(input2.toUpperCase()))
+                {
+                    TrainElement vagon=new TrainElement(null, Color.RED);
+                    System.out.println("5.3 A vagon előtt van másik vagon, amin vannak utasok? (I/N)");
+                    Scanner s3 = new Scanner(System.in);
+                    String input3 = s3.nextLine();
+                    if("N".equals(input3.toUpperCase()))													//5.3
+                    {
+                    	vagon.SetNextToFree();
+                    	System.out.println("5.4 A vagonon vannak utasok? (I/N)");
+                        Scanner s4 = new Scanner(System.in);
+                        String input4 = s4.nextLine();
+                    	if("N".equals(input4.toUpperCase()))												//5.4
+                        {
+                        	vagon.setEmpty();
+                        	vagon.move(tile);
+                        	System.out.println("Nincsenek utasok");
+                        	
+                        }
+                        else if("I".equals(input4.toUpperCase()))
+                        {
+                            vagon.move(tile);
+                            System.out.println("Az utasok leszálltak");
+                        }
+                        else
+                        {
+                            throw new IllegalArgumentException("Invalid input!");
+                        }
+                    	
+                    }
+                    else if("I".equals(input3.toUpperCase()))
+                    {
+                        vagon.move(tile);
+                        System.out.println("Az utasok nem szálltak le");
+                    }
+                    else
+                    {
+                        throw new IllegalArgumentException("Invalid input!");
+                    }
+                }
+                else
+                {
+                    throw new IllegalArgumentException("Invalid input!");
+                }
+            } else {
+                throw new IllegalArgumentException("Invalid input!");
+            }
     }
     
     public static void test6() {
