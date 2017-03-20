@@ -16,7 +16,7 @@ public class Switch extends Tile {
     private Tile cDir;
 
     /**
-     * Default constructor kiírja a konzolra, hogy Switch
+     * A switch konstruktora, megkapja paraméterként az aktív irányt
      *
      * @param activeDir
      */

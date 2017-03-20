@@ -38,9 +38,9 @@ public class Rail extends Tile {
         Scanner s = new Scanner(System.in);
         String input = s.nextLine();
         s.close();
-        if ("I".equals(input)) {
+        if ("I".equals(input.toUpperCase())) {
             visible = true;
-        } else if ("N".equals(input)) {
+        } else if ("N".equals(input.toUpperCase())) {
             visible = false;
         } else {
             throw new IllegalArgumentException("Invalid input");

@@ -113,9 +113,9 @@ public abstract class Tile {
         String input = s.nextLine();
         s.close();
     	System.out.println("<[Tile].checkCrash()");
-        if("I".equals(input)) {
+        if("I".equals(input.toUpperCase())) {
             return true;
-        } else if("N".equals(input)) {
+        } else if("N".equals(input.toUpperCase())) {
             return false;
         }
         throw new IllegalArgumentException("Invalid input");

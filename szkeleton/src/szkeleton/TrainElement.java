@@ -28,7 +28,7 @@ public class TrainElement {
     /**
      * megadja, hogy a kocsit megelőző összes vagon üres-e
      */
-    private boolean nextToFree;
+    private boolean nextToFree=false;
 
     /**
      * @param pos
@@ -39,6 +39,7 @@ public class TrainElement {
         this.pos = pos;
         this.pos.setElement(this);
         this.color = color;
+        this.empty=false;
     }
 
     /**
