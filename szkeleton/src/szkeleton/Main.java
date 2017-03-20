@@ -71,7 +71,6 @@ public class Main {
             colors.add(Color.RED);
         }
         pb.addTrain(tile, colors);
-        s.close();
     }
     
     public static void test3() {
@@ -83,7 +82,6 @@ public class Main {
             System.out.println("3.1 Merre áll a váltó? (1/2)");
             Scanner s = new Scanner(System.in);
             input = s.nextInt();
-            s.close();
         } catch(NoSuchElementException e) {
             Logger.getLogger(Main.class.getName()).severe(e.toString());
         }
@@ -135,7 +133,6 @@ public class Main {
         System.out.println("7.1 Nyerés, vesztés, kilépés? (N/V/K)");
         Scanner s = new Scanner(System.in);
         String input = s.nextLine();
-        s.close();
         if("N".equals(input.toUpperCase())) {
             pb.endGame("Win");
         } else if("V".equals(input.toUpperCase())) {

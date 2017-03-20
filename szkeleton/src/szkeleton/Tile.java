@@ -111,7 +111,6 @@ public abstract class Tile {
         System.out.println("Van a vonat előtt valamilyen akadály?");
         Scanner s = new Scanner(System.in);
         String input = s.nextLine();
-        s.close();
     	System.out.println("<[Tile].checkCrash()");
         if("I".equals(input.toUpperCase())) {
             return true;
