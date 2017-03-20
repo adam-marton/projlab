@@ -9,17 +9,19 @@ import java.util.logging.Logger;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("1: Játék indítása");
-        System.out.println("2: Vonat hozzáadása");
-        System.out.println("3: Váltó állítása");
-        System.out.println("4: Alagút építése/bezárása");
-        System.out.println("5: Utasok leszállítása");
-        System.out.println("6: Vonatok mozgatása");
-        System.out.println("7: Kilépés");
-        Scanner s = new Scanner(System.in);
-        String input = s.nextLine();
-        int command = Integer.parseInt(input);
-
+        
+        boolean exitmenu=false;
+        while (!exitmenu){
+        	System.out.println("1: Játék indítása");
+            System.out.println("2: Vonat hozzáadása");
+            System.out.println("3: Váltó állítása");
+            System.out.println("4: Alagút építése/bezárása");
+            System.out.println("5: Utasok leszállítása");
+            System.out.println("6: Vonatok mozgatása");
+            System.out.println("7: Kilépés");
+            Scanner s = new Scanner(System.in);
+            String input = s.nextLine();
+            int command = Integer.parseInt(input);
         switch (command) {
             case 1:
                 test1();
@@ -41,10 +43,13 @@ public class Main {
                 break;
             case 7:
                 test7();
+                exitmenu=true;
                 break;
             default:
                 System.out.println("Invalid input!");
         }
+        }
+        System.out.println("Terminate");
     }
     
     public static void test1() {
