@@ -70,10 +70,11 @@ public class PlottingBoard {
      */
     public void endGame(String s) {
         System.out.println(">[PlottingBoard].endGame()");
+        System.out.println("s");
+        System.out.println("<[PlottingBoard].endGame()");
         if("Exit".equals(s)) {
             System.exit(0);
         }
-        System.out.println("<[PlottingBoard].endGame()");
     }
 
     /**
