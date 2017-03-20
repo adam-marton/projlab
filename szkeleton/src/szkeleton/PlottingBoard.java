@@ -38,7 +38,7 @@ public class PlottingBoard {
     }
 
     /**
-     * Beállítja a következő pályát
+     * Beállítja a következő pályát, külső adatbázissal lesz használva
      */
     public void setNextLevel() {
     	System.out.println(">[PlottingBoard].setNextLevel()");
@@ -56,7 +56,7 @@ public class PlottingBoard {
     }
 
     /**
-     * Elindítja a játékot
+     * Elindítja a játékot, összeköti a mezőket
      */
     public void startGame() {
         System.out.println(">[PlottingBoard].startGame()");
@@ -82,26 +82,23 @@ public class PlottingBoard {
     public void run() {
     	System.out.println(">[PlottingBoard].run()");
         try {
-            this.currentLevel.moveAll();
+        	currentLevel.preMove();
+            currentLevel.moveAll();
         } catch (CrashException ex) {
             Logger.getLogger(PlottingBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            endGame(ex.getMessage());
         }
     	System.out.println("<[PlottingBoard].run()");
     }
 
     /**
-     * Példányosít és hozzáad egy új vonatot és hozuzátartozó kocsikat
-     * @param startingPos 
-     * @param colors 
+     * Létrehoz egy új vonatot és hozzáadja a tárolóhoz
+     * @param startingPos a mozdony kezdőpozíciója
+     * @param colors a vagonok színeit tárolja
      */
     public void addTrain(Tile startingPos, List<Color> colors) {
         System.out.println(">[PlottingBoard].addTrain()");
-        Train train = new Train(startingPos, colors);
-        for(Color c : colors) {
-            TrainElement trainElement = new TrainElement(startingPos, c);
-            train.addElement(trainElement);
-        }
-        trains.add(train);
+        trains.add(new Train(startingPos, colors));
         System.out.println("<[PlottingBoard].addTrain()");
     }
 }

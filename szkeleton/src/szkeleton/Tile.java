@@ -131,7 +131,7 @@ public abstract class Tile {
     }
 
     /**
-     * @return
+     * @return visszadja hogy van-e mozdony a mezőn
      */
     public boolean isFree() {
     	System.out.println(">[Tile].isFree()");
@@ -149,12 +149,11 @@ public abstract class Tile {
     }
 
     /**
-     * 
+     *  A léptető függvény a mezők felülírják
      * @throws szkeleton.CrashException
      */
     public void move() throws CrashException {
     	System.out.println(">[Tile].move()");
-        this.train.moveTrain(bDir);
     	System.out.println("<[Tile].move()");
     }
 

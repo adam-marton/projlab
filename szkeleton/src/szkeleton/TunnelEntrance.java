@@ -13,7 +13,7 @@ public class TunnelEntrance extends Tile {
     private boolean state;
 
     /**
-     * Default constructor
+     * Az alagút bejárat konstruktora, alap esetben zárva van az alagút.
      */
     public TunnelEntrance() {
         System.out.println("TunnelEntrance");
@@ -42,7 +42,7 @@ public class TunnelEntrance extends Tile {
     }
 
     /**
-     * A state field értékét változtatja.
+     * Nyitja, csukja az alagutat, ha a feltételek teljesülnek
      */
     @Override
     public void changeState() {
@@ -70,7 +70,13 @@ public class TunnelEntrance extends Tile {
         if (!isActive()) {
             throw new CrashException("TunnelEntrance is closed!");
         }
-        this.train.moveTrain(getDirB());
+        if (train.getPrevPos() == getDirA() && getDirB().isFree()) {
+            train.moveTrain(getDirB());
+        } else if (train.getPrevPos() == getDirB() && getDirA().isFree()) {
+            train.moveTrain(getDirA());
+        } else {
+            throw new CrashException("Ütközés");
+        }
         System.out.println("<[TunnelEntrance].move()");
     }
 }
