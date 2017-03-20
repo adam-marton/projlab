@@ -72,10 +72,14 @@ public class TunnelEntrance extends Tile {
         if (!isActive()) {
             throw new CrashException("TunnelEntrance is closed!");
         }
-        if (train.getPrevPos() == getDirA() && getDirB().isFree()) {
-            train.moveTrain(getDirB());
-        } else if (train.getPrevPos() == getDirB() && getDirA().isFree()) {
+        if (getDirB()!=null){
+        	if (train.getPrevPos() == getDirA() && getDirB().isFree()) {
+        		train.moveTrain(getDirB());
+        	}
+        } else if (getDirA()!=null){
+        	if (train.getPrevPos() == getDirB() && getDirA().isFree()) {
             train.moveTrain(getDirA());
+        	} 
         } else {
             throw new CrashException("Ütközés");
         }

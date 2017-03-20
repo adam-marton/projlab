@@ -75,6 +75,7 @@ public class Train {
     public void moveTrain(Tile pos) {
     	System.out.println(">[Train].moveTrain()");
         this.prevPos = this.pos;
+        if (prevPos!=null)
         this.prevPos.setTrain(null);
         this.pos = pos;
         this.pos.setTrain(this);

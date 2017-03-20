@@ -69,7 +69,8 @@ public class Level {
         System.out.println(">[Level].moveAll()");
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
-                tiles[i][j].move();
+                if (tiles[i][j].isMovable())
+            	tiles[i][j].move();
             }
         }
         System.out.println("<[Level].moveAll()");

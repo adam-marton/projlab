@@ -43,10 +43,14 @@ public class Station extends Tile {
     @Override
     public void move() throws CrashException {
     	System.out.println(">[Station].move()");
-        if (train.getPrevPos() == getDirA() && getDirB().isFree()) {
-            train.moveTrain(getDirB());
-        } else if (train.getPrevPos() == getDirB() && getDirA().isFree()) {
+    	if (getDirB()!=null){
+        	if (train.getPrevPos() == getDirA() && getDirB().isFree()) {
+        		train.moveTrain(getDirB());
+        	}
+        } else if (getDirA()!=null){
+        	if (train.getPrevPos() == getDirB() && getDirA().isFree()) {
             train.moveTrain(getDirA());
+        	} 
         } else {
             throw new CrashException("Ütközés");
         }

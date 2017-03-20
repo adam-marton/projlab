@@ -74,6 +74,7 @@ public class TrainElement {
         if (prevPos!=null)
         this.prevPos.setElement(null);
         this.pos = pos;
+        if (this.pos!=null)
         this.pos.setElement(this);
         System.out.println("<[TrainElement].move()");
     }

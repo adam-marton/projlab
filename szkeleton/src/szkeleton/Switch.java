@@ -16,6 +16,12 @@ public class Switch extends Tile {
     private Tile cDir;
 
     /**
+     * Default konstruktor
+     */
+    public Switch() {
+    }
+    
+    /**
      * A switch konstruktora, megkapja paraméterként az aktív irányt
      *
      * @param activeDir
@@ -46,6 +52,16 @@ public class Switch extends Tile {
         cDir = t;
         System.out.println("<[Switch].setDirC()");
     }
+    /**
+     * visszaadja a C kimeneti irányt
+     *
+     * @return
+     */
+    public Tile getDirC() {
+        System.out.println(">[Switch].getActiveDir()");
+        System.out.println("<[Switch].getActiveDir()");
+        return cDir;
+    }
 
     /**
      * a váltó állását változtatja meg
@@ -71,11 +87,15 @@ public class Switch extends Tile {
     @Override
     public void move() throws CrashException {
     	System.out.println(">[Switch].move()");
-        if (train.getPrevPos() == getDirA() && activeDir.isFree()) {
-            train.moveTrain(activeDir);
-        } else if (train.getPrevPos() == getDirB() && activeDir.isFree()) {
-            train.moveTrain(activeDir);
-        } else {
+    	if (activeDir!=null){
+        	if (train.getPrevPos() == getDirA() && getActiveDir().isFree()) {
+        		train.moveTrain(getActiveDir());
+        	}
+        } else if (getDirA()!=null){
+        	if (train.getPrevPos() == getDirB() ||train.getPrevPos() == getDirC() && getDirA().isFree()) {
+            train.moveTrain(getDirA());
+        	} 
+        }else {
             throw new CrashException();
         }
     	System.out.println("<[Switch].move()");
