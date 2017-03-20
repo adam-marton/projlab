@@ -2,7 +2,7 @@ package szkeleton;
 
 /**
  *
- * @author Ádám
+ * @author Adam
  */
 public class CrashException extends Exception {
 

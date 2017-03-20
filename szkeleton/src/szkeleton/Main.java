@@ -76,6 +76,7 @@ public class Main {
         Switch sw;
         Integer input = 0;
         try {
+            System.out.println("3.1 Merre áll a váltó?");
             Scanner s = new Scanner(System.in);
             input = s.nextInt();
         } catch(NoSuchElementException e) {
@@ -94,7 +95,25 @@ public class Main {
     }
     
     public static void test4() {
-        
+        TunnelEntrance te = new TunnelEntrance();
+        System.out.println("4.1 Az alagút nyitva van? (I/N)");
+        Scanner s1 = new Scanner(System.in);
+        String input1 = s1.nextLine();
+        Integer input2 = 0;
+        try {
+            System.out.println("4.2 Jelenleg hány alagút bejárat aktív? (0/1/2)");
+            Scanner s2 = new Scanner(System.in);
+            input2 = s2.nextInt();
+        } catch(NoSuchElementException e) {
+            Logger.getLogger(Main.class.getName()).severe(e.toString());
+        }
+        if("I".equals(input1)) {
+            te.changeState();
+            TunnelEntranceCounter.getInstance().addCounter(input2-1);
+        } else if("N".equals(input1)) {
+            TunnelEntranceCounter.getInstance().addCounter(input2);
+        }
+        te.changeState();
     }
     
     public static void test5() {
