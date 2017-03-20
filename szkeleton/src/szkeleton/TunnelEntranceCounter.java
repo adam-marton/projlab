@@ -36,7 +36,7 @@ public class TunnelEntranceCounter {
      * Beállítja a counter számlálónak a paraméterül kapott int értékét.
      * @param counter
      */
-    public void setCounter(int counter) {
+    public void addCounter(int counter) {
         this.counter = counter;
     }
 }
