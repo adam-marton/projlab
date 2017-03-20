@@ -9,13 +9,14 @@ public class Level {
      * Konstruktor létrehozza a mezőket
      */
     public Level() {
+    	 tiles= new Tile[20][20];
         // TODO ez egy külső forrásból fog történni jelenleg nincs implementálva
     }
 
     /**
      * A mezőket tároló tömb
      */
-    private final Tile[][] tiles = new Tile[20][20];
+    private final Tile[][] tiles;
 
     /**
      * A szint száma

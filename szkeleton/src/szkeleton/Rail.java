@@ -14,13 +14,16 @@ public class Rail extends Tile {
     private boolean visible;
 
     /**
-     * Default constructor kiírja, hogy Rail
+     * A rail konstruktora, ha a hamis értékkel hívjuk meg akkor alagútelem lesz
      *
      * @param visible
      */
     public Rail(boolean visible) {
         this.visible = visible;
+        if (visible)
         System.out.println("Rail");
+        else
+        	System.out.println("Tunnel");
     }
 
     /**
@@ -61,7 +64,7 @@ public class Rail extends Tile {
         } else if (train.getPrevPos() == getDirB() && getDirA().isFree()) {
             train.moveTrain(getDirA());
         } else {
-            throw new CrashException();
+            throw new CrashException("Ütközés");
         }
         System.out.println("<[Rail].move()");
     }

@@ -11,16 +11,9 @@ public class Station extends Tile {
     private Color color;
 
     /**
-     * Default constructor kiírja, hogy Station
-     */
-    public Station() {
-        System.out.println("Station");
-    }
-
-    /**
-     * kiírja, hogy Station és a színét
+     * Az állomás konstruktokiírja, hogy Station és a színét
      *
-     * @param color
+     * @param color Az állomás színe
      */
     public Station(Color color) {
         this.color = color;
@@ -55,7 +48,7 @@ public class Station extends Tile {
         } else if (train.getPrevPos() == getDirB() && getDirA().isFree()) {
             train.moveTrain(getDirA());
         } else {
-            throw new CrashException();
+            throw new CrashException("Ütközés");
         }
     	System.out.println("<[Station].move()");
     }
