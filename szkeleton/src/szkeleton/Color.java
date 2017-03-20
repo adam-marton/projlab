@@ -1,7 +1,7 @@
 package szkeleton;
 
 /**
- *Enum a színeknek
+ *Enum a szineknek
  * @author Adam
  */
 public enum Color {

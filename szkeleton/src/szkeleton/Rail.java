@@ -37,6 +37,7 @@ public class Rail extends Tile {
         System.out.println("Látható a sín?(Ha alagútban van csak akkor nem látható)");
         Scanner s = new Scanner(System.in);
         String input = s.nextLine();
+        s.close();
         if ("I".equals(input)) {
             visible = true;
         } else if ("N".equals(input)) {

@@ -48,6 +48,7 @@ public class Main {
             default:
                 System.out.println("Invalid input!");
         }
+        s.close();
         }
         System.out.println("Terminate");
     }
@@ -73,6 +74,7 @@ public class Main {
             colors.add(Color.RED);
         }
         pb.addTrain(tile, colors);
+        s.close();
     }
     
     public static void test3() {
@@ -84,6 +86,7 @@ public class Main {
             System.out.println("3.1 Merre áll a váltó?");
             Scanner s = new Scanner(System.in);
             input = s.nextInt();
+            s.close();
         } catch(NoSuchElementException e) {
             Logger.getLogger(Main.class.getName()).severe(e.toString());
         }
@@ -97,6 +100,7 @@ public class Main {
         sw.setDirB(bDir);
         sw.setDirC(cDir);
         sw.changeState();
+        
     }
     
     public static void test4() {
@@ -104,11 +108,13 @@ public class Main {
         System.out.println("4.1 Az alagút nyitva van? (I/N)");
         Scanner s1 = new Scanner(System.in);
         String input1 = s1.nextLine();
+        s1.close();
         Integer input2 = 0;
         try {
             System.out.println("4.2 Jelenleg hány alagút bejárat aktív? (0/1/2)");
             Scanner s2 = new Scanner(System.in);
             input2 = s2.nextInt();
+            s2.close();
         } catch(NoSuchElementException e) {
             Logger.getLogger(Main.class.getName()).severe(e.toString());
         }
@@ -134,6 +140,7 @@ public class Main {
         System.out.println("7.1 Nyerés, vesztés, kilépés? (N/V/K)");
         Scanner s = new Scanner(System.in);
         String input = s.nextLine();
+        s.close();
         if("N".equals(input.toUpperCase())) {
             pb.endGame("Win");
         } else if("V".equals(input.toUpperCase())) {

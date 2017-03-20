@@ -1,7 +1,7 @@
 package szkeleton;
 
 /**
- *
+ * Kivetelkezeleshez
  * @author Adam
  */
 public class CrashException extends Exception {

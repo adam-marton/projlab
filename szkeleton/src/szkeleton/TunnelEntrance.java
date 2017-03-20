@@ -30,6 +30,7 @@ public class TunnelEntrance extends Tile {
         System.out.println("Az alagút nyitva van?");
         Scanner s = new Scanner(System.in);
         String input = s.nextLine();
+        s.close();
         if ("I".equals(input)) {
             state = true;
         } else if ("N".equals(input)) {
