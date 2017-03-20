@@ -87,17 +87,14 @@ public class Switch extends Tile {
     @Override
     public void move() throws CrashException {
     	System.out.println(">[Switch].move()");
-    	if (activeDir!=null){
-        	if (train.getPrevPos() == getDirA() && getActiveDir().isFree()) {
-        		train.moveTrain(getActiveDir());
-        	}
-        } else if (getDirA()!=null){
-        	if (train.getPrevPos() == getDirB() ||train.getPrevPos() == getDirC() && getDirA().isFree()) {
-            train.moveTrain(getDirA());
-        	} 
-        }else {
-            throw new CrashException();
-        }
+    	 if (train.getPrevPos() == getDirA() && activeDir!=null && getActiveDir().isFree()) {
+         	train.moveTrain(getActiveDir());
+         }
+         else if (train.getPrevPos() == getDirB() ||train.getPrevPos() == getDirC() && getDirA()!=null && getDirA().isFree()) {
+             train.moveTrain(getDirA());
+         }
+         else
+             throw new CrashException("Ütközés");
     	System.out.println("<[Switch].move()");
     }
 }
