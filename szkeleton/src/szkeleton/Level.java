@@ -1,5 +1,9 @@
 package szkeleton;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 /**
  *
  */
@@ -13,50 +17,50 @@ public class Level {
 		TunnelEntranceCounter.getInstance().addCounter(0);
 		tiles = new Tile[10][20]; // TODO ez egy külső forrásból fog történni
 									// jelenleg nincs implementálva
-		 Scanner scanC = new Scanner(new File("map"+id+".txt"));
-		 while(scanC.hasNextLine())
-			 {
-			    String[] splitLine= scanC.nextLine().split("><");
-				if(splitLine[0] == "<rail"){
-					String[] coords splitLine[1].split("-");
+		Scanner scanC;
+		try {
+			scanC = new Scanner(new File("map" + id + ".txt"));
+			while (scanC.hasNextLine()) {
+				String[] splitLine = scanC.nextLine().split("><");
+				if (splitLine[0] == "<rail") {
+					String[] coords = splitLine[1].split("-");
 					int coordX = Integer.parseInt(coords[0]);
 					int coordY = Integer.parseInt(coords[1]);
 					tiles[coordX][coordY] = new Rail(true);
-				}
-				else if(splitLine[0] == "<switch"){
-					String[] coords splitLine[1].split("-");
+				} else if (splitLine[0] == "<switch") {
+					String[] coords = splitLine[1].split("-");
 					int coordX = Integer.parseInt(coords[0]);
 					int coordY = Integer.parseInt(coords[1]);
 					tiles[coordX][coordY] = new Switch();
-				}
-				else if(splitLine[0] == "<station"){
-					String[] coords splitLine[1].split("-");
+				} else if (splitLine[0] == "<station") {
+					String[] coords = splitLine[1].split("-");
 					int coordX = Integer.parseInt(coords[0]);
 					int coordY = Integer.parseInt(coords[1]);
-					tiles[coordX][coordY] = new Station(splitLine[2]);
-				}
-				else if(splitLine[0] == "<crossrail"){
-					String[] coords splitLine[1].split("-");
+					tiles[coordX][coordY] = new Station(Color.valueOf(splitLine[2]));
+
+				} else if (splitLine[0] == "<crossrail") {
+					String[] coords = splitLine[1].split("-");
 					int coordX = Integer.parseInt(coords[0]);
 					int coordY = Integer.parseInt(coords[1]);
 					tiles[coordX][coordY] = new CrossRail();
-				}
-				else if(splitLine[0] == "<tunnel"){
-					String[] coords splitLine[1].split("-");
+				} else if (splitLine[0] == "<tunnel") {
+					String[] coords = splitLine[1].split("-");
 					int coordX = Integer.parseInt(coords[0]);
 					int coordY = Integer.parseInt(coords[1]);
 					tiles[coordX][coordY] = new Rail(false);
-				}
-				else if(splitLine[0] == "<tunnelentrance"){
-					String[] coords splitLine[1].split("-");
+				} else if (splitLine[0] == "<tunnelentrance") {
+					String[] coords = splitLine[1].split("-");
 					int coordX = Integer.parseInt(coords[0]);
 					int coordY = Integer.parseInt(coords[1]);
 					tiles[coordX][coordY] = new TunnelEntrance();
 				}
- 		 	}
-    	 	scanC.close();
-    	 
-		setReferences(id);
+			}
+			scanC.close();
+			setReferences(id);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -80,72 +84,71 @@ public class Level {
 	 * Beállítja a kapcsolatokat a mezők között
 	 */
 	public void setReferences(int mapID) {
-		Scanner scanC = new Scanner(new File("map"+mapID+".txt"));
-	   	 while(scanC.hasNextLine())
-			 {
-			    String[] splitLine= scanC.nextLine().split("><");
-				if(splitLine[0] == "<rail" || splitLine[0] == "<tunnel" || splitLine[0] == "<tunnelentrance"){
-					String[] coords splitLine[1].split("-");
+		Scanner scanC;
+		try {
+			scanC = new Scanner(new File("map" + mapID + ".txt"));
+
+			while (scanC.hasNextLine()) {
+				String[] splitLine = scanC.nextLine().split("><");
+				if (splitLine[0] == "<rail" || splitLine[0] == "<tunnel" || splitLine[0] == "<tunnelentrance") {
+					String[] coords = splitLine[1].split("-");
 					int coordX = Integer.parseInt(coords[0]);
 					int coordY = Integer.parseInt(coords[1]);
-					
-					String[] coordADir splitLine[2].split("-");
-					splitLine[4] = splitLine[3].replace('>', '');
-					String[] coordBDir splitLine[3].split("-");
-					
+
+					String[] coordADir = splitLine[2].split("-");
+					splitLine[4] = splitLine[3].replaceAll(">", "");
+					String[] coordBDir = splitLine[3].split("-");
+
 					int coordADirX = Integer.parseInt(coordADir[0]);
 					int coordADirY = Integer.parseInt(coordADir[1]);
 					int coordBDirX = Integer.parseInt(coordBDir[0]);
 					int coordBDirY = Integer.parseInt(coordBDir[1]);
-					
+
 					tiles[coordX][coordY].setDirA(tiles[coordADirX][coordADirY]);
 					tiles[coordX][coordY].setDirB(tiles[coordBDirX][coordBDirY]);
-				}
-				else if(splitLine[0] == "<switch"){
-					String[] coords splitLine[1].split("-");
+				} else if (splitLine[0] == "<switch") {
+					String[] coords = splitLine[1].split("-");
 					int coordX = Integer.parseInt(coords[0]);
 					int coordY = Integer.parseInt(coords[1]);
-					
-					String[] coordADir splitLine[2].split("-");
-					String[] coordBDir splitLine[3].split("-");
-					splitLine[4] = splitLine[4].replace('>', '');
-					String[] coordCDir splitLine[4].split("-");
-					
+
+					String[] coordADir = splitLine[2].split("-");
+					String[] coordBDir = splitLine[3].split("-");
+					splitLine[4] = splitLine[4].replaceAll(">", "");
+					String[] coordCDir = splitLine[4].split("-");
+
 					int coordADirX = Integer.parseInt(coordADir[0]);
 					int coordADirY = Integer.parseInt(coordADir[1]);
 					int coordBDirX = Integer.parseInt(coordBDir[0]);
 					int coordBDirY = Integer.parseInt(coordBDir[1]);
 					int coordCDirX = Integer.parseInt(coordCDir[0]);
 					int coordCDirY = Integer.parseInt(coordCDir[1]);
-					
+
 					tiles[coordX][coordY].setDirA(tiles[coordADirX][coordADirY]);
 					tiles[coordX][coordY].setDirB(tiles[coordBDirX][coordBDirY]);
-					tiles[coordX][coordY].setDirC(tiles[coordCDirX][coordCDirY]);
-				}
-				else if(splitLine[0] == "<station"){
-					String[] coords splitLine[1].split("-");
+					((Switch) tiles[coordX][coordY]).setDirC(tiles[coordCDirX][coordCDirY]);
+				} else if (splitLine[0] == "<station") {
+					String[] coords = splitLine[1].split("-");
 					int coordX = Integer.parseInt(coords[0]);
 					int coordY = Integer.parseInt(coords[1]);
-					
-					splitLine[4] = splitLine[3].replace('>', '');
-					String[] coordADir splitLine[3].split("-");
-					
+
+					splitLine[4] = splitLine[3].replaceAll(">", "");
+					String[] coordADir = splitLine[3].split("-");
+
 					int coordADirX = Integer.parseInt(coordADir[0]);
 					int coordADirY = Integer.parseInt(coordADir[1]);
-					
+
 					tiles[coordX][coordY].setDirA(tiles[coordADirX][coordADirY]);
-				}
-				else if(splitLine[0] == "<crossrail"){
-					String[] coords splitLine[1].split("-");
+				} else if (splitLine[0] == "<crossrail") {
+					String[] coords = splitLine[1].split("-");
 					int coordX = Integer.parseInt(coords[0]);
 					int coordY = Integer.parseInt(coords[1]);
-					
-					String[] coordADir splitLine[2].split("-");
-					String[] coordBDir splitLine[3].split("-");
-					String[] coordCDir splitLine[4].split("-");
-					splitLine[4] = splitLine[5].replace('>', '');
-					String[] coordDDir splitLine[5].split("-");
-					
+
+					String[] coordADir = splitLine[2].split("-");
+					String[] coordBDir = splitLine[3].split("-");
+					String[] coordCDir = splitLine[4].split("-");
+					splitLine[4] = splitLine[5].replaceAll(">", "");
+					String[] coordDDir = splitLine[5].split("-");
+
 					int coordADirX = Integer.parseInt(coordADir[0]);
 					int coordADirY = Integer.parseInt(coordADir[1]);
 					int coordBDirX = Integer.parseInt(coordBDir[0]);
@@ -154,15 +157,18 @@ public class Level {
 					int coordCDirY = Integer.parseInt(coordCDir[1]);
 					int coordDDirX = Integer.parseInt(coordDDir[0]);
 					int coordDDirY = Integer.parseInt(coordDDir[1]);
-					
+
 					tiles[coordX][coordY].setDirA(tiles[coordADirX][coordADirY]);
 					tiles[coordX][coordY].setDirB(tiles[coordBDirX][coordBDirY]);
-					tiles[coordX][coordY].setDirC(tiles[coordCDirX][coordCDirY]);
-					tiles[coordX][coordY].setDirC(tiles[coordDDirX][coordDDirY]);
+					((CrossRail) tiles[coordX][coordY]).setDirC(tiles[coordCDirX][coordCDirY]);
+					((CrossRail) tiles[coordX][coordY]).setDirD(tiles[coordDDirX][coordDDirY]);
 				}
 			}
-	   	 scanC.close();
-		// TODO ez egy külső forrásból fog történni jelenleg nincs implementálva
+			scanC.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
