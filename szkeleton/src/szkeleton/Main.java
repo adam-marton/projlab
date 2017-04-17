@@ -1,6 +1,13 @@
 package szkeleton;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -19,6 +26,7 @@ public class Main {
 		System.out.println("5: Utasok leszállítása");
 		System.out.println("6: Vonatok mozgatása");
 		System.out.println("7: Kilépés");
+		System.out.println("8: Teszteset beolvasása");
 		input = m.nextLine();
 		int command = Integer.parseInt(input);
 		switch (command) {
@@ -43,6 +51,8 @@ public class Main {
 		case 7:
 			test7();
 			break;
+		case 8:
+			readTest();
 		default:
 			System.out.println("Invalid input!");
 		}
@@ -289,5 +299,66 @@ public class Main {
 		} else {
 			throw new IllegalArgumentException("Invalid input!");
 		}
+	}
+	
+	public static void readTest() {
+		FileInputStream fis;
+		FileOutputStream fos;
+		try {
+			fis = new FileInputStream("input.txt");
+			fos = new FileOutputStream("output.txt");
+			Scanner sc = new Scanner(fis);
+			Iterable<String> iter = new Iterable<String>() {
+				Scanner sc;
+				Iterable<String> set(Scanner sc) {
+					this.sc = sc;
+					return this;
+				}
+				@Override
+				public Iterator iterator() {
+					return sc;
+				}
+			}.set(sc);
+			LinkedList<String> words;
+			for(String line : iter) {
+				words = (LinkedList<String>) Arrays.asList(line.split(" "));
+				String command = words.pollFirst();
+				Test test = new Test(fos);
+				switch(command) {
+					case "loadMap":
+						test.loadMap(words);
+						break;
+					case "addTrain":
+						test.addTrain(words);
+						break;
+					case "setSwitch":
+						test.setSwitch(words);
+						break;
+					case "setTunnelEntrance":
+						test.setTunnelEntrance(words);
+						break;
+					case "move":
+						test.move(words);
+						break;
+					case "getTrains":
+						test.loadMap(words);
+						break;
+					case "getSwitches":
+						test.getSwitches(words);
+						break;
+					case "getTunnelEntrances":
+						test.getTunnelEntrances(words);
+						break;
+					default :
+						throw new UnsupportedOperationException("The given test command is unknown.");
+				
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
