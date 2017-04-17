@@ -32,6 +32,12 @@ public class Level {
 	public int getLevelId() {
 		return id;
 	}
+	/**
+	 * @return visszaadegy mezőt
+	 */
+	public Tile getTile(int x, int y) {
+		return tiles[x][y];
+	}
 
 	/**
 	 * Beállítja a kapcsolatokat a mezők között
