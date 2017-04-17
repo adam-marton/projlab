@@ -21,13 +21,11 @@ public class TunnelEntrance extends Tile {
     }
 
     /**
-     * Visszaadja az alagútbejárat állapotát. True, ha nyitva van, false, ha
-     * zárva. Jelen esetben bekérjük a tesztelőtől az állapotát.
+     * Visszaadja az alagútbejárat állapotát. True, ha nyitva van, false, ha zárva.
      * @return
      */
     public boolean isActive() {
-        System.out.println(">[TunnelEntrance].isActive()");
-        System.out.println("Az alagút nyitva van?");
+        /*System.out.println("Az alagút nyitva van?");
         Scanner s = new Scanner(System.in);
         String input = s.nextLine();
         if ("I".equals(input.toUpperCase())) {
@@ -36,8 +34,7 @@ public class TunnelEntrance extends Tile {
             state = false;
         } else {
             throw new IllegalArgumentException("Invalid input!");
-        }
-        System.out.println("<[TunnelEntrance].move()");
+        }*/
         return state;
     }
 
@@ -46,19 +43,15 @@ public class TunnelEntrance extends Tile {
      */
     @Override
     public void changeState() {
-        System.out.println(">[TunnelEntrance].changeState()");
         if(!state) {
             if(TunnelEntranceCounter.getInstance().getCounter() < 2) {
                 state = true;
-                TunnelEntranceCounter.getInstance().addCounter(1);
-                System.out.println("<[TunnelEntrance].Kinyitás");
+                TunnelEntranceCounter.getInstance().addCounter(TunnelEntranceCounter.getInstance().getCounter()+1);
             }
         } else {
             state = false;
-            TunnelEntranceCounter.getInstance().addCounter(-1);
-            System.out.println("<[TunnelEntrance].Bezárás");
+            TunnelEntranceCounter.getInstance().addCounter(TunnelEntranceCounter.getInstance().getCounter()-1);
         }
-        System.out.println("<[TunnelEntrance].changeState()");
     }
 
     /**
@@ -68,9 +61,8 @@ public class TunnelEntrance extends Tile {
      */
     @Override
     public void move() throws CrashException {
-        System.out.println(">[TunnelEntrance].move()");
         if (!isActive()) {
-            throw new CrashException("TunnelEntrance is closed!");
+            throw new CrashException("Zárva van a bejárat, vesztettél!");
         }
         if (train.getPrevPos() == getDirA() && getDirB()!=null && getDirB().isFree()) {
         	train.moveTrain(getDirB());
@@ -79,7 +71,6 @@ public class TunnelEntrance extends Tile {
             train.moveTrain(getDirA());
         }
         else
-            throw new CrashException("Ütközés");
-        System.out.println("<[TunnelEntrance].move()");
+            throw new CrashException("Ütközés történt, vesztettél!");
     }
 }

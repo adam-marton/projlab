@@ -19,15 +19,15 @@ public class Switch extends Tile {
      * Default konstruktor
      */
     public Switch() {
+    	this.activeDir=this.bDir;
     }
     
     /**
-     * A switch konstruktora, megkapja paraméterként az aktív irányt
+     * A switch konstruktora, megkapja paraméterként az aktív irányt **csak teszteléshez**
      *
      * @param activeDir
      */
     public Switch(Tile activeDir) {
-        System.out.println("Switch");
         this.activeDir = activeDir;
     }
 
@@ -37,8 +37,6 @@ public class Switch extends Tile {
      * @return
      */
     public Tile getActiveDir() {
-        System.out.println(">[Switch].getActiveDir()");
-        System.out.println("<[Switch].getActiveDir()");
         return activeDir;
     }
 
@@ -48,9 +46,7 @@ public class Switch extends Tile {
      * @param t
      */
     public void setDirC(Tile t) {
-        System.out.println(">[Switch].setDirC()");
         cDir = t;
-        System.out.println("<[Switch].setDirC()");
     }
     /**
      * visszaadja a C kimeneti irányt
@@ -58,8 +54,6 @@ public class Switch extends Tile {
      * @return
      */
     public Tile getDirC() {
-        System.out.println(">[Switch].getActiveDir()");
-        System.out.println("<[Switch].getActiveDir()");
         return cDir;
     }
 
@@ -68,13 +62,11 @@ public class Switch extends Tile {
      */
     @Override
     public void changeState() {
-    	System.out.println(">[Switch].changeState()");
         if (activeDir == getDirB()) {
             activeDir = cDir;
         } else if (activeDir == cDir) {
             activeDir = getDirB();
         }
-    	System.out.println("<[Switch].changeState()");
     }
 
     /**
@@ -86,15 +78,13 @@ public class Switch extends Tile {
      */
     @Override
     public void move() throws CrashException {
-    	System.out.println(">[Switch].move()");
     	 if (train.getPrevPos() == getDirA() && activeDir!=null && getActiveDir().isFree()) {
          	train.moveTrain(getActiveDir());
          }
-         else if (train.getPrevPos() == getDirB() ||train.getPrevPos() == getDirC() && getDirA()!=null && getDirA().isFree()) {
+         else if (( train.getPrevPos() == getDirB() || train.getPrevPos() == getDirC() ) && getDirA()!=null && getDirA().isFree()) {
              train.moveTrain(getDirA());
          }
          else
-             throw new CrashException("Ütközés");
-    	System.out.println("<[Switch].move()");
+             throw new CrashException("Ütközés történt, vesztettél!");
     }
 }

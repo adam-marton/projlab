@@ -17,7 +17,7 @@ public class Station extends Tile {
      */
     public Station(Color color) {
         this.color = color;
-        System.out.println("Station, szín:" + color);
+        //System.out.println("Station, szín:" + color);
     }
 
     /**
@@ -27,8 +27,6 @@ public class Station extends Tile {
      * @return
      */
     public Color getColor() {
-        System.out.println(">[Station].getColor()");
-        System.out.println("<[Station].getColor()");
         return color;
     }
 
@@ -42,7 +40,6 @@ public class Station extends Tile {
      */
     @Override
     public void move() throws CrashException {
-    	System.out.println(">[Station].move()");
     	 if (train.getPrevPos() == getDirA() && getDirB()!=null && getDirB().isFree()) {
          	train.moveTrain(getDirB());
          }
@@ -50,8 +47,7 @@ public class Station extends Tile {
              train.moveTrain(getDirA());
          }
          else
-             throw new CrashException("Ütközés");
-    	System.out.println("<[Station].move()");
+             throw new CrashException("Ütközés történt, vesztettél!");
     }
 
     /**
@@ -61,13 +57,11 @@ public class Station extends Tile {
      */
     @Override
     public void setElement(TrainElement e) {
-    	System.out.println(">[Station].setElement()");
         trainElement = e;
         Color c = trainElement.getColor();
         color = getColor();
         if (c == color) {
             trainElement.getOff();
         }
-    	System.out.println("<[Station].setElement()");
     }
 }

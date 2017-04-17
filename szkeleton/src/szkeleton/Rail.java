@@ -20,32 +20,14 @@ public class Rail extends Tile {
 	 */
 	public Rail(boolean visible) {
 		this.visible = visible;
-		if (visible)
-			System.out.println("Rail");
-		else
-			System.out.println("Tunnel");
 	}
 
 	/**
-	 * visszatér azzal, hogy látható-e a Rail vagy sem, amit a kedves
-	 * felhasználótól kérdezünk meg
+	 * visszatér azzal, hogy látható-e a Rail vagy sem
 	 *
 	 * @return
 	 */
 	public boolean isVisible() {
-		System.out.println(">[Rail].isVisible()");
-		System.out.println("Látható a sín?(Ha alagútban van csak akkor nem látható)");
-		Scanner s = new Scanner(System.in);
-		String input = s.nextLine();
-		s.close();
-		if ("I".equals(input.toUpperCase())) {
-			visible = true;
-		} else if ("N".equals(input.toUpperCase())) {
-			visible = false;
-		} else {
-			throw new IllegalArgumentException("Invalid input");
-		}
-		System.out.println("<[Rail].isVisible()");
 		return visible;
 	}
 
@@ -59,7 +41,6 @@ public class Rail extends Tile {
      */
     @Override
     public void move() throws CrashException {
-        System.out.println(">[Rail].move()");
         if (train.getPrevPos() == getDirA() && getDirB()!=null && getDirB().isFree()) {
         	train.moveTrain(getDirB());
         }
@@ -67,8 +48,6 @@ public class Rail extends Tile {
             train.moveTrain(getDirA());
         }
         else
-            throw new CrashException("Ütközés");
-       
-        System.out.println("<[Rail].move()");
+            throw new CrashException("Ütközés történt, vesztettél!");
     }
 }

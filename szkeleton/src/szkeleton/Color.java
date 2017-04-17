@@ -5,5 +5,5 @@ package szkeleton;
  * @author Adam
  */
 public enum Color {
-    BLUE, RED
+    BLUE, RED, YELLOW, PURPLE, GREEN, BLACK
 }
