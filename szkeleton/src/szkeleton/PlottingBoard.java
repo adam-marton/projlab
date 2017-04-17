@@ -98,7 +98,8 @@ public class PlottingBoard {
 	 * @param colors
 	 *            a vagonok színeit tárolja
 	 */
-	public void addTrain(Tile startingPos, List<Color> colors) {
+	public void addTrain(int x, int y, List<Color> colors) {
+		Tile startingPos=getLevel().getTile(x,y);
 		trains.add(new Train(startingPos, colors));
 	}
 }

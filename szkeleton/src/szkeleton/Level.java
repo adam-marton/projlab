@@ -37,7 +37,6 @@ public class Level {
 					int coordX = Integer.parseInt(coords[0]);
 					int coordY = Integer.parseInt(coords[1]);
 					tiles[coordX][coordY] = new Station(Color.valueOf(splitLine[2]));
-
 				} else if (splitLine[0] == "<crossrail") {
 					String[] coords = splitLine[1].split("-");
 					int coordX = Integer.parseInt(coords[0]);
