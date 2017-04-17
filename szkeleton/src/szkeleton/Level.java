@@ -13,6 +13,7 @@ public class Level {
 		TunnelEntranceCounter.getInstance().addCounter(0);
 		tiles = new Tile[10][20]; // TODO ez egy külső forrásból fog történni
 									// jelenleg nincs implementálva
+		setReferences(id);
 	}
 
 	/**
@@ -35,7 +36,7 @@ public class Level {
 	/**
 	 * Beállítja a kapcsolatokat a mezők között
 	 */
-	public void setReferences() {
+	public void setReferences(int id) {
 		// TODO ez egy külső forrásból fog történni jelenleg nincs implementálva
 	}
 
