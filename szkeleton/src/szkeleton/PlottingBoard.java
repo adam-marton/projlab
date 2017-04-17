@@ -93,12 +93,15 @@ public class PlottingBoard {
 	/**
 	 * Létrehoz egy új vonatot és hozzáadja a tárolóhoz
 	 * 
-	 * @param startingPos
-	 *            a mozdony kezdőpozíciója
+	 * @param x a mozdony kezdőpozíciójának x koordinátája 
+	 *       
+	 * @param y a mozdony kezdőpozíciójának y koordinátája 
+	 * 
 	 * @param colors
 	 *            a vagonok színeit tárolja
 	 */
-	public void addTrain(Tile startingPos, List<Color> colors) {
+	public void addTrain(int x, int y, List<Color> colors) {
+		Tile startingPos = currentLevel.getTile(x, y);
 		trains.add(new Train(startingPos, colors));
 	}
 }

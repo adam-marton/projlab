@@ -84,4 +84,13 @@ public class Level {
 		if (tiles[x][y] != null)
 			tiles[x][y].changeState();
 	}
+	
+	/**
+	 * @param x koordináta
+	 * @param y koordináta
+	 *  Visszatér a koordinátákon lévő Tile-lal
+	 */
+	public Tile getTile(int x, int y) {
+		return tiles[x][y];
+	}
 }
