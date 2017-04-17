@@ -101,7 +101,7 @@ public class Level {
 					int coordY = Integer.parseInt(coords[1]);
 
 					String[] coordADir = splitLine[2].split("-");
-					splitLine[4] = splitLine[3].replaceAll(">", "");
+					splitLine[3] = splitLine[3].replaceAll(">", "");
 					String[] coordBDir = splitLine[3].split("-");
 
 					int coordADirX = Integer.parseInt(coordADir[0]);
@@ -135,14 +135,17 @@ public class Level {
 					String[] coords = splitLine[1].split("-");
 					int coordX = Integer.parseInt(coords[0]);
 					int coordY = Integer.parseInt(coords[1]);
-
-					splitLine[4] = splitLine[3].replaceAll(">", "");
+					
 					String[] coordADir = splitLine[3].split("-");
-
+					splitLine[4] = splitLine[4].replaceAll(">", "");
+					String[] coordBDir = splitLine[4].split("-");
 					int coordADirX = Integer.parseInt(coordADir[0]);
 					int coordADirY = Integer.parseInt(coordADir[1]);
-
+					int coordBDirX = Integer.parseInt(coordBDir[0]);
+					int coordBDirY = Integer.parseInt(coordBDir[1]);
+					
 					tiles[coordX][coordY].setDirA(tiles[coordADirX][coordADirY]);
+					tiles[coordX][coordY].setDirB(tiles[coordBDirX][coordBDirY]);
 				} else if (splitLine[0] == "<crossrail") {
 					String[] coords = splitLine[1].split("-");
 					int coordX = Integer.parseInt(coords[0]);
@@ -151,7 +154,7 @@ public class Level {
 					String[] coordADir = splitLine[2].split("-");
 					String[] coordBDir = splitLine[3].split("-");
 					String[] coordCDir = splitLine[4].split("-");
-					splitLine[4] = splitLine[5].replaceAll(">", "");
+					splitLine[5] = splitLine[5].replaceAll(">", "");
 					String[] coordDDir = splitLine[5].split("-");
 
 					int coordADirX = Integer.parseInt(coordADir[0]);
