@@ -11,7 +11,8 @@ public class Level {
 	public Level(int id) {
 		this.id = id;
 		TunnelEntranceCounter.getInstance().addCounter(0);
-		tiles = new Tile[10][20]; // TODO ez egy külső forrásból fog történni jelenleg nincs implementálva
+		tiles = new Tile[10][20]; // TODO ez egy külső forrásból fog történni
+									// jelenleg nincs implementálva
 	}
 
 	/**
@@ -46,10 +47,12 @@ public class Level {
 	public void preMove() throws CrashException {
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
-				if (tiles[i][j].checkCrash()) {
-					throw new CrashException("Ütközés történt, vesztettél!");
+				if (tiles[i][j] != null) {
+					if (tiles[i][j].checkCrash()) {
+						throw new CrashException("Ütközés történt, vesztettél!");
+					}
+					tiles[i][j].enableMove();
 				}
-				tiles[i][j].enableMove();
 			}
 		}
 	}
@@ -63,7 +66,7 @@ public class Level {
 	public void moveAll() throws CrashException {
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
-				if (tiles[i][j].isMovable())
+				if (tiles[i][j] != null && tiles[i][j].isMovable())
 					tiles[i][j].move();
 			}
 		}
@@ -77,6 +80,7 @@ public class Level {
 	 *            meghívja annak change state függvényét
 	 */
 	public void changeState(int x, int y) {
-		tiles[x][y].changeState();
+		if (tiles[x][y] != null)
+			tiles[x][y].changeState();
 	}
 }
