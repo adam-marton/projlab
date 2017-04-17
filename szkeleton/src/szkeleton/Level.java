@@ -13,7 +13,7 @@ public class Level {
 		TunnelEntranceCounter.getInstance().addCounter(0);
 		tiles = new Tile[10][20]; // TODO ez egy külső forrásból fog történni
 									// jelenleg nincs implementálva
-		 Scanner scanC = new Scanner(new File("map"+mapID+".txt"));
+		 Scanner scanC = new Scanner(new File("map"+id+".txt"));
 		 while(scanC.hasNextLine())
 			 {
 			    String[] splitLine= scanC.nextLine().split("><");
