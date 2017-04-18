@@ -57,6 +57,10 @@ public class PlottingBoard {
 		deleteTrains();
 		currentLevel = new Level(1);
 	}
+	public void startGame(int n) {
+		deleteTrains();
+		currentLevel = new Level(n);
+	}
 
 	/**
 	 * Lezárja a játékot és kilép ha exit lett átadva
