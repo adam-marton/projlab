@@ -17,7 +17,14 @@ public class Test {
 	}
 	
 	public void loadMap(List<String> param) {
-		
+		if(param.size() != 1) {
+			throw new IllegalArgumentException("Input Language syntax error");
+		}
+		try {
+			this.boardUnderTest.startGame(Integer.parseInt(param.get(0)));
+		} catch (NumberFormatException ex) {
+        	throw new IllegalArgumentException("Input Language syntax error");
+        }
 	}
 	
 	public void addTrain(List<String> param) {

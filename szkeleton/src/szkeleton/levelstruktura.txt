@@ -1,0 +1,9 @@
+<rail><coordX-coordY><dirAX-dirAY><dirBX-dirBY>
+<switch><coordX-coordY><dirAX-dirAY><dirBX-dirBY><dirCX-dirCY>
+<station><coordX-coordY><color><dirAX-dirAY>
+<crossrail><coordX-coordY><dirAX-dirAY><dirBX-dirBY><dirCX-dirCY><dirDX-dirDY>
+<tunnel><coordX-coordY><dirAX-dirAY><dirBX-dirBY>
+<tunnelentrance><coordX-coordY><dirAX-dirAY><dirBX-dirBY>
+
+map1.txt
+map2.txt
