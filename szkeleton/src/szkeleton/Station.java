@@ -20,6 +20,15 @@ public class Station extends Tile {
         //System.out.println("Station, szín:" + color);
     }
 
+    public void printTile(int i, int j){
+    	if(train != null){
+    		System.out.println("Train "+i+"-"+j);
+    	}
+    	else if(trainElement != null){
+    		System.out.println("TrainElement "+i+"-"+j+" "+trainElement.getColor()+","+trainElement.isEmpty()+" ");
+    	}
+    }
+    
     /**
      * visszaadja a Station színét, ami tökéletes az éppen az állomás előtt
      * elhaladó kocsik színének az ellenőrzéséhez
@@ -40,7 +49,8 @@ public class Station extends Tile {
      */
     @Override
     public void move() throws CrashException {
-    	 if (train.getPrevPos() == getDirA() && getDirB()!=null && getDirB().isFree()) {
+    	if(train != null){
+    		if (train.getPrevPos() == getDirA() && getDirB()!=null && getDirB().isFree()) {
          	train.moveTrain(getDirB());
          }
          else if (train.getPrevPos() == getDirB() && getDirA()!=null && getDirA().isFree()) {
@@ -48,6 +58,7 @@ public class Station extends Tile {
          }
          else
              throw new CrashException("Ütközés történt, vesztettél!");
+    	}
     }
 
     /**
@@ -57,11 +68,16 @@ public class Station extends Tile {
      */
     @Override
     public void setElement(TrainElement e) {
-        trainElement = e;
-        Color c = trainElement.getColor();
-        color = getColor();
-        if (c == color) {
-            trainElement.getOff();
+        if(e != null){
+	    	trainElement = e;
+	        Color c = trainElement.getColor();
+	        color = getColor();
+	        if (c == color) {
+	            trainElement.getOff();
+	        }
+        }
+        else{
+        	trainElement = null;
         }
     }
 }

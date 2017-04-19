@@ -66,19 +66,21 @@ public class CrossRail extends Tile {
 	 */
 	@Override
 	public void move() throws CrashException {
-		if (train.getPrevPos() == getDirA() && getDirB() != null && getDirB().isFree()) {
-			train.moveTrain(getDirB());
-		} 
-		else if (train.getPrevPos() == getDirB() && getDirA() != null && getDirA().isFree()) {
-			train.moveTrain(getDirA());
-		} 
-		else if (train.getPrevPos() == getDirC() && getDirD() != null && getDirD().isFree()) {
-			train.moveTrain(getDirD());
-		} 
-		else if (train.getPrevPos() == getDirD() && getDirC() != null && getDirC().isFree()) {
-			train.moveTrain(getDirC());
+		if(train != null){
+			if (train.getPrevPos() == getDirA() && getDirB() != null && getDirB().isFree()) {
+				train.moveTrain(getDirB());
+			} 
+			else if (train.getPrevPos() == getDirB() && getDirA() != null && getDirA().isFree()) {
+				train.moveTrain(getDirA());
+			} 
+			else if (train.getPrevPos() == getDirC() && getDirD() != null && getDirD().isFree()) {
+				train.moveTrain(getDirD());
+			} 
+			else if (train.getPrevPos() == getDirD() && getDirC() != null && getDirC().isFree()) {
+				train.moveTrain(getDirC());
+			}
+			else
+				throw new CrashException("Ütközés történt, vesztettél!");
 		}
-		else
-			throw new CrashException("Ütközés történt, vesztettél!");
 	}
 }

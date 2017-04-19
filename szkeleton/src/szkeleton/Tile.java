@@ -121,9 +121,17 @@ public abstract class Tile {
 	 * @return visszadja hogy van-e mozdony a mezőn
 	 */
 	public boolean isFree() {
-		return null == train;
+		return (null == train && null == trainElement);
 	}
 
+	public void printTile(int i, int j){
+		if(train != null){
+			System.out.println("Train "+i+"-"+j);
+		}
+		else if (trainElement != null){
+			System.out.println("TrainElement "+i+"-"+j+" "+trainElement.getColor()+","+trainElement.isEmpty()+" ");
+		}
+	}
 	/**
 	 * Üres metódus, a leszármazottak felülírják, ha szükséges.
 	 */

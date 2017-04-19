@@ -16,8 +16,18 @@ public class TunnelEntrance extends Tile {
      * Az alagút bejárat konstruktora, alap esetben zárva van az alagút.
      */
     public TunnelEntrance() {
-        System.out.println("TunnelEntrance");
         this.state = false;
+    }
+    
+    public void printTile(int i, int j){
+    	System.out.println("TunnelEntrance "+i+"-"+j + " " + this.isActive());
+    	
+    	if(train != null){
+    		System.out.println("Train "+i+"-"+j);
+    	}
+    	else if(trainElement != null){
+    		System.out.println("TrainElement "+i+"-"+j+" "+trainElement.getColor()+","+trainElement.isEmpty()+" ");
+    	}
     }
 
     /**
@@ -61,16 +71,20 @@ public class TunnelEntrance extends Tile {
      */
     @Override
     public void move() throws CrashException {
-        if (!isActive()) {
+    	if (!this.isActive() && train != null) {
             throw new CrashException("Zárva van a bejárat, vesztettél!");
         }
-        if (train.getPrevPos() == getDirA() && getDirB()!=null && getDirB().isFree()) {
-        	train.moveTrain(getDirB());
+        if(train != null){
+	        if (train.getPrevPos() == getDirA() && getDirB()!=null && getDirB().isFree()) {
+	        	train.moveTrain(getDirB());
+	        }
+	        else if (train.getPrevPos() == getDirB() && getDirA()!=null && getDirA().isFree()) {
+	            train.moveTrain(getDirA());
+	        }
+	        else
+	            throw new CrashException("Ütközés történt, vesztettél!");
+	        
+	        
         }
-        else if (train.getPrevPos() == getDirB() && getDirA()!=null && getDirA().isFree()) {
-            train.moveTrain(getDirA());
-        }
-        else
-            throw new CrashException("Ütközés történt, vesztettél!");
     }
 }

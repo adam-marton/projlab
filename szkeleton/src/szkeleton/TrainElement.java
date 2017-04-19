@@ -36,7 +36,6 @@ public class TrainElement {
 	 *            A vagon konstruktora, létrehozza a vagont a kapott színnel
 	 */
 	public TrainElement(Tile pos, Color color) {
-		System.out.println("TrainElement");
 		this.pos = pos;
 		if (this.pos != null)
 			this.pos.setElement(this);
@@ -68,7 +67,7 @@ public class TrainElement {
 	 */
 	public void move(Tile pos) {
 		this.prevPos = this.pos;
-		if (prevPos != null)
+		if (this.prevPos != null)
 			this.prevPos.setElement(null);
 		this.pos = pos;
 		if (this.pos != null)

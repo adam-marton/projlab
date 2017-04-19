@@ -40,14 +40,16 @@ public class Rail extends Tile {
      * @throws szkeleton.CrashException
      */
     @Override
-    public void move() throws CrashException {
-        if (train.getPrevPos() == getDirA() && getDirB()!=null && getDirB().isFree()) {
-        	train.moveTrain(getDirB());
-        }
-        else if (train.getPrevPos() == getDirB() && getDirA()!=null && getDirA().isFree()) {
-            train.moveTrain(getDirA());
-        }
-        else
-            throw new CrashException("Ütközés történt, vesztettél!");
+    public void move() throws CrashException{
+    	if(train != null){
+	        if (train.getPrevPos() == getDirA() && getDirB()!=null && getDirB().isFree()) {
+	        	train.moveTrain(getDirB());
+	        }
+	        else if (train.getPrevPos() == getDirB() && getDirA()!=null && getDirA().isFree()) {
+	            train.moveTrain(getDirA());
+	        }
+	        else
+	            throw new CrashException("Ütközés történt, vesztettél!");
+    	}
     }
 }

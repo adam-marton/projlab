@@ -10,6 +10,8 @@ public class CrashException extends Exception {
     }
 
     public CrashException(String message) {
-        super(message);
+        System.out.println(message);
+        System.exit(0);
+    	//super(message);
     }
 }

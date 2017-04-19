@@ -30,16 +30,13 @@ public class Train {
 	 *            vonatot a kapott paraméterekkel
 	 */
 	public Train(Tile pos, List<Color> color) {
-		System.out.println("Ich bin egy Train, mit viele TrainElement"); // Train
-																			// vagyok
-																			// sok
-																			// TrainElement-el
 		this.pos = pos;
 		this.pos.setTrain(this);
 		for (Color i : color) {
-			if (i == Color.BLACK)
+			if (i == Color.BLACK){
 				this.addElement(new CoalCarrier(null, i));
-			this.addElement(new TrainElement(null, i));
+			}
+			else this.addElement(new TrainElement(null, i));
 		}
 	}
 
@@ -85,7 +82,12 @@ public class Train {
 		int j = 0;
 		while (elements.get(j).isEmpty()) {
 			j++;
+			if(j == elements.size()) {
+				j--;
+				break;
+			}
 		}
+		
 		elements.get(j).SetNextToFree();
 		elements.get(0).move(this.prevPos);
 		for (int i = 1; i < elements.size(); i++) {

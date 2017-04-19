@@ -1,7 +1,10 @@
 package szkeleton;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 /**
@@ -12,39 +15,31 @@ public class PlottingBoard {
 	/**
 	 * A vonatokat tároló lista.
 	 */
-	private List<Train> trains;
+	private List<Train> trains = new ArrayList<Train>();
 
 	/**
 	 * Az aktuális szintet tároló field.
 	 */
 	private Level currentLevel;
-
+	
 	/**
 	 * Az összes soron következő vonat adatait tárolja
 	 */	
-	private int[] trainCoords;
-	private List<List<Color>> trainColors = new ArrayList<List<Color>>();
+	private List<Train> allTrains = new ArrayList<Train>();
 	
 	/**
 	 * A létrejövő vonatokhoz tartozó időzítést tárolja
 	 */
-	private int[] times;
+	private List<Integer> times = new ArrayList<Integer>();
 	
-	/**
-	 * Indexelés a létrejövő vonatokhoz
-	 */
-	static private int trainCounter = 0;
-
-	/**
-	 * Időzítés a vonatokhoz
-	 */
-	static private int clock = 0;
+	private int clock = 0;
 	
 	/**
 	 * Alapértelmezett konstruktor
+	 * @throws FileNotFoundException 
 	 */
-	public PlottingBoard() {
-		startGame();
+	public PlottingBoard(int n) throws FileNotFoundException {
+		startGame(n);
 	}
 
 	/**
@@ -52,35 +47,6 @@ public class PlottingBoard {
 	 */
 	public void deleteTrains() {
 		this.trains = new ArrayList<Train>();
-	}
-
-	/**
-	 * Beállítja a következő pályát
-	 */
-	public void setNextLevel() {
-		deleteTrains();
-		currentLevel = new Level(currentLevel.getLevelId());
-		Scanner scan = new Scanner(new File("train"+currentLevel.getLevelId()+".txt"));
-		int timesCounter = 0;
-	   	while(scan.hasNextLine())
-	   	{	   		
-	   		String[] splitLine= scan.nextLine().split("><");
-	   		splitLine[0].replace("<", "");
-	   		times[timesCounter] = Integer.parseInt(splitLine[0]);
-	   		timesCounter++;
-	   		String[] coords = splitLine[1].split("-");
-	   		int coordX = Integer.parseInt(coords[0]);
-			int coordY = Integer.parseInt(coords[1]);
-			String[] colors = splitLine[2].split("-");
-			List<Color> elementColors = new ArrayList<Color>();
-			for(int i = 0; i < colors.length; i++)
-			{
-				elementColors.get(i).valueOf(colors[i]);
-			}
-			trainCoords[2*timesCounter] = coordX;
-			trainCoords[2*timesCounter + 1] = coordY;
-			trainColors.add(elementColors);
-		}
 	}
 
 	/**
@@ -94,64 +60,47 @@ public class PlottingBoard {
 
 	/**
 	 * Elindítja a játékot, összeköti a mezőket
+	 * @throws FileNotFoundException 
 	 */
-	public void startGame() {
-		deleteTrains();
-		currentLevel = new Level(1);
-		Scanner scan = new Scanner(new File("train1.txt"));
-		int timesCounter = 0;
-	   	while(scan.hasNextLine())
-	   	{	   		
-	   		String[] splitLine= scan.nextLine().split("><");
-	   		splitLine[0].replace("<", "");
-	   		times[timesCounter] = Integer.parseInt(splitLine[0]);
-	   		timesCounter++;
-	   		String[] coords = splitLine[1].split("-");
-	   		int coordX = Integer.parseInt(coords[0]);
-			int coordY = Integer.parseInt(coords[1]);
-			String[] colors = splitLine[2].split("-");
-			List<Color> elementColors = new ArrayList<Color>();
-			for(int i = 0; i < colors.length; i++)
-			{
-				elementColors.get(i).valueOf(colors[i]);
-			}
-		}
-	}
-	public void startGame(int n) {
+	
+	public void startGame(int n) throws FileNotFoundException {
 		deleteTrains();
 		currentLevel = new Level(n);
-		Scanner scan = new Scanner(new File("train1.txt"));
-		int timesCounter = 0;
+		Scanner scan = new Scanner(new File("train" + n + ".txt"));
 	   	while(scan.hasNextLine())
 	   	{	   		
 	   		String[] splitLine= scan.nextLine().split("><");
-	   		splitLine[0].replace("<", "");
-	   		times[timesCounter] = Integer.parseInt(splitLine[0]);
-	   		timesCounter++;
+	   		splitLine[0] = splitLine[0].replace("<", "");
+	   		times.add(Integer.parseInt(splitLine[0]));
 	   		String[] coords = splitLine[1].split("-");
 	   		int coordX = Integer.parseInt(coords[0]);
 			int coordY = Integer.parseInt(coords[1]);
+			Tile startingPos = getLevel().getTile(coordX, coordY);
 			String[] colors = splitLine[2].split("-");
+			colors[colors.length-1] = colors[colors.length-1].replace(">", "");
 			List<Color> elementColors = new ArrayList<Color>();
 			for(int i = 0; i < colors.length; i++)
 			{
-				elementColors.get(i).valueOf(colors[i]);
+				elementColors.add(Color.valueOf(colors[i]));
 			}
-		}
+			allTrains.add(new Train(startingPos, elementColors));
+		}	
+	   	scan.close();
 	}
 
 	/**
 	 * Lezárja a játékot és kilép ha exit lett átadva
 	 * 
 	 * @param s
+	 * @throws FileNotFoundException 
 	 */
-	public void endGame(String s) {
+	public void endGame(String s) throws FileNotFoundException {
 
 		System.out.println(s);
 		if ("Ütközés történt, vesztettél!".equals(s) || "Zárva van a bejárat, vesztettél!".equals(s)) {
-			startGame();
+			startGame(1);
 		} else if ("Nyertél".equals(s)) {
-			setNextLevel();
+			startGame(1);
 		} else {
 			System.exit(0);
 		}
@@ -160,14 +109,14 @@ public class PlottingBoard {
 	/**
 	 * A Clock által megadott időnként hívott metódus ami a játékot eggyel
 	 * "lépteti"
+	 * @throws FileNotFoundException 
 	 */
-	public void run() {
+	public void run() throws FileNotFoundException {
 		try {
-			if(clock == times[trainCounter])
+			if(clock == times.get(0))
 			{
-				addTrain(trainCoords[2*trainCounter], trainCoords[2*trainCounter + 1], trainColors.get(trainCounter));
-				trainCounter++;
-				clock = 0;
+				trains.add(allTrains.get(0));
+				allTrains.remove(0);
 			}
 			clock++;
 			currentLevel.preMove();
@@ -186,8 +135,8 @@ public class PlottingBoard {
 	 * @param colors
 	 *            a vagonok színeit tárolja
 	 */
-	public void addTrain(int x, int y, List<Color> colors) {
-		Tile startingPos=getLevel().getTile(x,y);
+	/*public void addTrain(Train t) {
+		Tile startingPos = getLevel().getTile(x, y);        
 		trains.add(new Train(startingPos, colors));
-	}
+	}*/
 }
