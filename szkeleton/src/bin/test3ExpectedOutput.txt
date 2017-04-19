@@ -1,0 +1,5 @@
+Switch 1-5 C
+TunnelEntrance 1-7 true
+TrainElement 1-7 RED,false 
+Train 1-8
+TunnelEntrance 1-9 false

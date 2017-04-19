@@ -1,0 +1,8 @@
+loadMapAndTrains 4
+move
+move
+move
+move
+move
+move
+listObjects

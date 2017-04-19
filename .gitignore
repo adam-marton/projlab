@@ -6,4 +6,5 @@ build.xml
 /szkeleton/.settings/*
 /szkeleton/.project
 build/
-bin/
+bin/*
+!szkeleton/src/bin/
