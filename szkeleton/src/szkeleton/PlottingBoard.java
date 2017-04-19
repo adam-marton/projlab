@@ -1,6 +1,7 @@
 package szkeleton;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -62,26 +63,31 @@ public class PlottingBoard {
 	public void setNextLevel() {
 		deleteTrains();
 		currentLevel = new Level(currentLevel.getLevelId());
-		Scanner scan = new Scanner(new File("train"+currentLevel.getLevelId()+".txt"));
-		int timesCounter = 0;
-	   	while(scan.hasNextLine())
-	   	{	   		
-	   		String[] splitLine= scan.nextLine().split("><");
-	   		splitLine[0].replace("<", "");
-	   		times[timesCounter] = Integer.parseInt(splitLine[0]);
-	   		timesCounter++;
-	   		String[] coords = splitLine[1].split("-");
-	   		int coordX = Integer.parseInt(coords[0]);
-			int coordY = Integer.parseInt(coords[1]);
-			String[] colors = splitLine[2].split("-");
-			List<Color> elementColors = new ArrayList<Color>();
-			for(int i = 0; i < colors.length; i++)
-			{
-				elementColors.get(i).valueOf(colors[i]);
+		Scanner scan;
+		try {
+			scan = new Scanner(new File("train"+currentLevel.getLevelId()+".txt"));
+			int timesCounter = 0;
+		   	while(scan.hasNextLine())
+		   	{	   		
+		   		String[] splitLine= scan.nextLine().split("><");
+		   		splitLine[0].replace("<", "");
+		   		times[timesCounter] = Integer.parseInt(splitLine[0]);
+		   		timesCounter++;
+		   		String[] coords = splitLine[1].split("-");
+		   		int coordX = Integer.parseInt(coords[0]);
+				int coordY = Integer.parseInt(coords[1]);
+				String[] colors = splitLine[2].split("-");
+				List<Color> elementColors = new ArrayList<Color>();
+				for(int i = 0; i < colors.length; i++)
+				{
+					elementColors.get(i).valueOf(colors[i]);
+				}
+				trainCoords[2*timesCounter] = coordX;
+				trainCoords[2*timesCounter + 1] = coordY;
+				trainColors.add(elementColors);
 			}
-			trainCoords[2*timesCounter] = coordX;
-			trainCoords[2*timesCounter + 1] = coordY;
-			trainColors.add(elementColors);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -100,45 +106,56 @@ public class PlottingBoard {
 	public void startGame() {
 		deleteTrains();
 		currentLevel = new Level(1);
-		Scanner scan = new Scanner(new File("train1.txt"));
-		int timesCounter = 0;
-	   	while(scan.hasNextLine())
-	   	{	   		
-	   		String[] splitLine= scan.nextLine().split("><");
-	   		splitLine[0].replace("<", "");
-	   		times[timesCounter] = Integer.parseInt(splitLine[0]);
-	   		timesCounter++;
-	   		String[] coords = splitLine[1].split("-");
-	   		int coordX = Integer.parseInt(coords[0]);
-			int coordY = Integer.parseInt(coords[1]);
-			String[] colors = splitLine[2].split("-");
-			List<Color> elementColors = new ArrayList<Color>();
-			for(int i = 0; i < colors.length; i++)
-			{
-				elementColors.get(i).valueOf(colors[i]);
+		Scanner scan;
+		try {
+			scan = new Scanner(new File("train1.txt"));
+			int timesCounter = 0;
+		   	while(scan.hasNextLine())
+		   	{	   		
+		   		String[] splitLine= scan.nextLine().split("><");
+		   		splitLine[0].replace("<", "");
+		   		times[timesCounter] = Integer.parseInt(splitLine[0]);
+		   		timesCounter++;
+		   		String[] coords = splitLine[1].split("-");
+		   		int coordX = Integer.parseInt(coords[0]);
+				int coordY = Integer.parseInt(coords[1]);
+				String[] colors = splitLine[2].split("-");
+				List<Color> elementColors = new ArrayList<Color>();
+				for(int i = 0; i < colors.length; i++)
+				{
+					elementColors.get(i).valueOf(colors[i]);
+				}
 			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 	public void startGame(int n) {
 		deleteTrains();
 		currentLevel = new Level(n);
-		Scanner scan = new Scanner(new File("train1.txt"));
-		int timesCounter = 0;
-	   	while(scan.hasNextLine())
-	   	{	   		
-	   		String[] splitLine= scan.nextLine().split("><");
-	   		splitLine[0].replace("<", "");
-	   		times[timesCounter] = Integer.parseInt(splitLine[0]);
-	   		timesCounter++;
-	   		String[] coords = splitLine[1].split("-");
-	   		int coordX = Integer.parseInt(coords[0]);
-			int coordY = Integer.parseInt(coords[1]);
-			String[] colors = splitLine[2].split("-");
-			List<Color> elementColors = new ArrayList<Color>();
-			for(int i = 0; i < colors.length; i++)
-			{
-				elementColors.get(i).valueOf(colors[i]);
+		Scanner scan;
+		try {
+			scan = new Scanner(new File("train1.txt"));
+			int timesCounter = 0;
+		   	while(scan.hasNextLine())
+		   	{	   		
+		   		String[] splitLine= scan.nextLine().split("><");
+		   		splitLine[0].replace("<", "");
+		   		times[timesCounter] = Integer.parseInt(splitLine[0]);
+		   		timesCounter++;
+		   		String[] coords = splitLine[1].split("-");
+		   		int coordX = Integer.parseInt(coords[0]);
+				int coordY = Integer.parseInt(coords[1]);
+				String[] colors = splitLine[2].split("-");
+				List<Color> elementColors = new ArrayList<Color>();
+				for(int i = 0; i < colors.length; i++)
+				{
+					elementColors.get(i).valueOf(colors[i]);
+				}
 			}
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
 		}
 	}
 
