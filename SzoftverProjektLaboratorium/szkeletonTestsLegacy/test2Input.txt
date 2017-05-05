@@ -1,0 +1,7 @@
+loadMapAndTrains 2
+changeSwitch 1 4
+move
+move
+move
+move
+listObjects

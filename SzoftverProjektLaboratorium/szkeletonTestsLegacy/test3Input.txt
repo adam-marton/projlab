@@ -1,0 +1,11 @@
+loadMapAndTrains 3
+changeSwitch 1 5
+changeTunnelEntrance 1 7
+move
+move
+move
+move
+move
+move
+move
+listObjects

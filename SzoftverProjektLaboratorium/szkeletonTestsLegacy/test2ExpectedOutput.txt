@@ -1,0 +1,3 @@
+Switch 1-4 C
+TrainElement 1-4 RED,false 
+Train 2-4

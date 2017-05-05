@@ -1,0 +1,4 @@
+TrainElement 1-5 YELLOW,false 
+TrainElement 1-6 RED,false 
+TrainElement 1-7 BLUE,false 
+Train 1-8
