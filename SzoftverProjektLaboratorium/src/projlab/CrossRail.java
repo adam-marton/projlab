@@ -3,12 +3,12 @@ package projlab;
 public class CrossRail extends Tile {
 
 	/**
-	 * A mező egyik szomszédja.
+	 * A mezĹ‘ egyik szomszĂ©dja.
 	 */
 	protected Tile cDir;
 
 	/**
-	 * A mező másik szomszédja.
+	 * A mezĹ‘ mĂˇsik szomszĂ©dja.
 	 */
 	protected Tile dDir;
 
@@ -21,7 +21,7 @@ public class CrossRail extends Tile {
 	}
 
 	/**
-	 * Beállítja az aDir field értékét a kapott Tile értékére.
+	 * BeĂˇllĂ­tja az aDir field Ă©rtĂ©kĂ©t a kapott Tile Ă©rtĂ©kĂ©re.
 	 * 
 	 * @param t
 	 */
@@ -30,7 +30,7 @@ public class CrossRail extends Tile {
 	}
 
 	/**
-	 * Beállítja a bDir field értékét a kapott Tile értékére.
+	 * BeĂˇllĂ­tja a bDir field Ă©rtĂ©kĂ©t a kapott Tile Ă©rtĂ©kĂ©re.
 	 * 
 	 * @param t
 	 */
@@ -39,7 +39,7 @@ public class CrossRail extends Tile {
 	}
 
 	/**
-	 * Visszaadja az aDir field értékét.
+	 * Visszaadja az aDir field Ă©rtĂ©kĂ©t.
 	 * 
 	 * @return
 	 */
@@ -48,7 +48,7 @@ public class CrossRail extends Tile {
 	}
 
 	/**
-	 * Visszaadja a bDir field értékét.
+	 * Visszaadja a bDir field Ă©rtĂ©kĂ©t.
 	 * 
 	 * @return
 	 */
@@ -57,10 +57,10 @@ public class CrossRail extends Tile {
 	}
 
 	/**
-	 * a rajta álló mozdony mozgatásáért felelős függvényt hívja meg, ha az még
-	 * nem mozgott ebben a ciklusban megnézi, hogy a rajta lévő vonat előző
-	 * pozíciója melyik mezővel egyezik meg és a másik irányba küldi tovább ha
-	 * egyik irányba se tud a vonat továbbmenni -> ütközés
+	 * a rajta ĂˇllĂł mozdony mozgatĂˇsĂˇĂ©rt felelĹ‘s fĂĽggvĂ©nyt hĂ­vja meg, ha az mĂ©g
+	 * nem mozgott ebben a ciklusban megnĂ©zi, hogy a rajta lĂ©vĹ‘ vonat elĹ‘zĹ‘
+	 * pozĂ­ciĂłja melyik mezĹ‘vel egyezik meg Ă©s a mĂˇsik irĂˇnyba kĂĽldi tovĂˇbb ha
+	 * egyik irĂˇnyba se tud a vonat tovĂˇbbmenni -> ĂĽtkĂ¶zĂ©s
 	 *
 	 * @throws projlab.CrashException
 	 */
@@ -80,7 +80,7 @@ public class CrossRail extends Tile {
 				train.moveTrain(getDirC());
 			}
 			else
-				throw new CrashException("Ütközés történt, vesztettél!");
+				throw new CrashException("Utkozes tortent, vesztettel!");
 		}
 	}
 	
