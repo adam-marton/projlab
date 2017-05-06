@@ -21,29 +21,29 @@ import javax.swing.JPanel;
 public class PlottingBoard {
 
 	/**
-	 * A vonatokat tároló lista.
+	 * A vonatokat tĂˇrolĂł lista.
 	 */
 	private List<Train> trains = new ArrayList<Train>();
 
 	/**
-	 * Az aktuális szintet tároló field.
+	 * Az aktuĂˇlis szintet tĂˇrolĂł field.
 	 */
 	private Level currentLevel;
 	
 	/**
-	 * Az összes soron következő vonat adatait tárolja
+	 * Az Ă¶sszes soron kĂ¶vetkezĹ‘ vonat adatait tĂˇrolja
 	 */	
-	private List<Train> allTrains = new ArrayList<Train>();
+	private List<ArrayList<Color>> elementColors = new ArrayList<ArrayList<Color>>();
 	
 	/**
-	 * A létrejövő vonatokhoz tartozó időzítést tárolja
+	 * A lĂ©trejĂ¶vĹ‘ vonatokhoz tartozĂł idĹ‘zĂ­tĂ©st tĂˇrolja
 	 */
 	private List<Integer> times = new ArrayList<Integer>();
 	
 	private int clock = 0;
 	
 	/**
-	 * Alapértelmezett konstruktor
+	 * AlapĂ©rtelmezett konstruktor
 	 * @throws FileNotFoundException 
 	 */
 	public PlottingBoard(int n) throws FileNotFoundException {
@@ -51,14 +51,23 @@ public class PlottingBoard {
 	}
 
 	/**
-	 * Törli a tárolt vonatokat
+	 * TĂ¶rli a tĂˇrolt vonatokat
 	 */
+	
+	public boolean isWon(){
+		for (int i=0; i <trains.size();i++){
+			if(!trains.get(i).isTheTrainEmpty()) return false;
+		}
+		return true;
+	}
 	public void deleteTrains() {
 		this.trains = new ArrayList<Train>();
+		this.elementColors =  new ArrayList<ArrayList<Color>>();
+		this.times = new ArrayList<Integer>();
 	}
 
 	/**
-	 * Vissza adja jelenleg beállított pályát
+	 * Vissza adja jelenleg beĂˇllĂ­tott pĂˇlyĂˇt
 	 * 
 	 * @return currentLevel
 	 */
@@ -67,7 +76,7 @@ public class PlottingBoard {
 	}
 
 	/**
-	 * Elindítja a játékot, összeköti a mezőket
+	 * ElindĂ­tja a jĂˇtĂ©kot, Ă¶sszekĂ¶ti a mezĹ‘ket
 	 * @throws FileNotFoundException 
 	 */
 	
@@ -83,28 +92,28 @@ public class PlottingBoard {
 	   		String[] coords = splitLine[1].split("-");
 	   		int coordX = Integer.parseInt(coords[0]);
 			int coordY = Integer.parseInt(coords[1]);
-			Tile startingPos = getLevel().getTile(coordX, coordY);
+			//Tile startingPos = getLevel().getTile(coordX, coordY);
 			String[] colors = splitLine[2].split("-");
 			colors[colors.length-1] = colors[colors.length-1].replace(">", "");
-			List<Color> elementColors = new ArrayList<Color>();
+			ArrayList<Color> elementColorsTemp = new ArrayList<Color>();
 			for(int i = 0; i < colors.length; i++)
 			{
-				elementColors.add(Color.valueOf(colors[i]));
+				elementColorsTemp.add(Color.valueOf(colors[i]));
 			}
-			allTrains.add(new Train(startingPos, elementColors));
+			elementColors.add(elementColorsTemp);
 		}	
 	   	scan.close();
                 Main.pause = false;
 	}
 
 	/**
-	 * Lezárja a játékot és kilép ha exit lett átadva
+	 * LezĂˇrja a jĂˇtĂ©kot Ă©s kilĂ©p ha exit lett Ăˇtadva
 	 * 
 	 * @param s
 	 * @throws FileNotFoundException 
 	 */
 	public void endGame(String s) throws FileNotFoundException {
-            JFrame frame = new JFrame("Játék vége");
+            JFrame frame = new JFrame("Jatek vege!");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setResizable(false);
             frame.setLocationRelativeTo(null);
@@ -114,13 +123,13 @@ public class PlottingBoard {
             JPanel footPanel = new JPanel(new FlowLayout());
             frame.add(footPanel, BorderLayout.PAGE_END);
             frame.add(new JLabel(s), BorderLayout.PAGE_START);
-            JButton restart = new JButton("Újrakezdés");
-            JButton nextLevel = new JButton("Következő");
-            JButton exit = new JButton("Kilépés");
-            if ("Ütközés történt, vesztettél!".equals(s) || "Zárva van a bejárat, vesztettél!".equals(s)) {
+            JButton restart = new JButton("Ujrakezdes");
+            JButton nextLevel = new JButton("Kovetkezo‘");
+            JButton exit = new JButton("Kilepes");
+            if ("ĂśtkĂ¶zĂ©s tĂ¶rtĂ©nt, vesztettĂ©l!".equals(s) || "ZĂˇrva van a bejĂˇrat, vesztettĂ©l!".equals(s)) {
                 footPanel.add(restart);
                 footPanel.add(exit);
-            } else if("Nyertél".equals(s)) {
+            } else if("NyertĂ©l".equals(s)) {
                 footPanel.add(nextLevel);
                 footPanel.add(exit);
             }
@@ -162,16 +171,21 @@ public class PlottingBoard {
 	}
 
 	/**
-	 * A Clock által megadott időnként hívott metódus ami a játékot eggyel
-	 * "lépteti"
+	 * A Clock Ăˇltal megadott idĹ‘nkĂ©nt hĂ­vott metĂłdus ami a jĂˇtĂ©kot eggyel
+	 * "lĂ©pteti"
 	 * @throws FileNotFoundException 
 	 */
 	public void run() throws FileNotFoundException {
 		try {
-			if(clock == times.get(0))
-			{
-				trains.add(allTrains.get(0));
-				allTrains.remove(0);
+			if(!elementColors.isEmpty()){
+				
+				if(clock == times.get(0))
+				{
+					System.out.println(clock +"  " +times.get(0));
+						trains.add(new Train(getLevel().getTile(0, 1), elementColors.get(0)));
+						elementColors.remove(0);
+					times.remove(0);
+				}
 			}
 			clock++;
 			currentLevel.preMove();
@@ -182,12 +196,12 @@ public class PlottingBoard {
 	}
 
 	/**
-	 * Létrehoz egy új vonatot és hozzáadja a tárolóhoz
+	 * LĂ©trehoz egy Ăşj vonatot Ă©s hozzĂˇadja a tĂˇrolĂłhoz
 	 * 
 	 * @param startingPos
-	 *            a mozdony kezdőpozíciója
+	 *            a mozdony kezdĹ‘pozĂ­ciĂłja
 	 * @param colors
-	 *            a vagonok színeit tárolja
+	 *            a vagonok szĂ­neit tĂˇrolja
 	 */
 	/*public void addTrain(Train t) {
 		Tile startingPos = getLevel().getTile(x, y);        
