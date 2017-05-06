@@ -1,13 +1,16 @@
-- A leszállás nem mindig jó, akkor is leszáll, ha nem kéne neki
-- Valami normális hibakezelés arra, hogyha ütközés történik vagy vmi, esetleg feldobni valami windowsos ablakot a hiba szövegével hogy elõlrõl/kilépés
-- Csinálni még 4 pályát (a mostaninál könnyebbeket szerintem)
-- Megoldani, hogy a vonat a trainsX.txt-ben megadott idõben induljon, ne rögtön az elején
-- Jelezni valahogy, hogy megnyertük a pályát, és a következõ pálya betöltése
-- átnevezni a packaget szkeletonról ;D
+- A leszÃ¡llÃ¡s nem mindig jÃ³, akkor is leszÃ¡ll, ha nem kÃ©ne neki
+- CsinÃ¡lni mÃ©g 4 pÃ¡lyÃ¡t (a mostaninÃ¡l kÃ¶nnyebbeket szerintem)
 
 
-//szándékosan bennehagytam, hogy a consolrera kiirja a kattintott mezõ koordinátáját, hogy könnyebb legyen pályát csinálni
-//a váltókat irányait úgy kell megadni, ahogy a képen mellékelve van, különben szar lesz az egész
-//az állomások csak vizszintes és függõleges sinek mellett legyenek pls, mert a többi nincs lekódolva
+//szÃ¡ndÃ©kosan bennehagytam, hogy a consolrera kiirja a kattintott mezÅ‘ koordinÃ¡tÃ¡jÃ¡t, hogy kÃ¶nnyebb legyen pÃ¡lyÃ¡t csinÃ¡lni
+//a vÃ¡ltÃ³kat irÃ¡nyait Ãºgy kell megadni, ahogy a kÃ©pen mellÃ©kelve van, kÃ¼lÃ¶nben szar lesz az egÃ©sz
+//az Ã¡llomÃ¡sok csak vizszintes Ã©s fÃ¼ggÅ‘leges sinek mellett legyenek pls, mert a tÃ¶bbi nincs lekÃ³dolva
 
-//minden más szerintem faszán mûködik
+//minden mÃ¡s szerintem faszÃ¡n mÅ±kÃ¶dik
+
+
+/// DONE
+- Megoldani, hogy a vonat a trainsX.txt-ben megadott idÅ‘ben induljon, ne rÃ¶gtÃ¶n az elejÃ©n
+- Jelezni valahogy, hogy megnyertÃ¼k a pÃ¡lyÃ¡t, Ã©s a kÃ¶vetkezÅ‘ pÃ¡lya betÃ¶ltÃ©se
+- Ã¡tnevezni a packaget szkeletonrÃ³l ;D
+- Valami normÃ¡lis hibakezelÃ©s arra, hogyha Ã¼tkÃ¶zÃ©s tÃ¶rtÃ©nik vagy vmi, esetleg feldobni valami windowsos ablakot a hiba szÃ¶vegÃ©vel hogy elÅ‘lrÅ‘l/kilÃ©pÃ©s
