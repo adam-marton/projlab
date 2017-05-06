@@ -6,34 +6,34 @@ package projlab;
 public class TrainElement {
 
 	/**
-	 * a TrainElement jelenlegi pozíciója
+	 * a TrainElement jelenlegi pozĂ­ciĂłja
 	 */
 	protected Tile pos;
 
 	/**
-	 * a TrainElement előző pozíciója
+	 * a TrainElement elĹ‘zĹ‘ pozĂ­ciĂłja
 	 */
 	protected Tile prevPos;
 
 	/**
-	 * a TrainElement színe
+	 * a TrainElement szĂ­ne
 	 */
 	protected Color color;
 
 	/**
-	 * tárolja, hogy már lezsálltak-e az utasok vagyis, hogy a kocsi üres
+	 * tĂˇrolja, hogy mĂˇr lezsĂˇlltak-e az utasok vagyis, hogy a kocsi ĂĽres
 	 */
 	protected boolean empty;
 
 	/**
-	 * megadja, hogy a kocsit megelőző összes vagon üres-e
+	 * megadja, hogy a kocsit megelĹ‘zĹ‘ Ă¶sszes vagon ĂĽres-e
 	 */
 	protected boolean nextToFree;
 
 	/**
 	 * @param pos
 	 * @param color
-	 *            A vagon konstruktora, létrehozza a vagont a kapott színnel
+	 *            A vagon konstruktora, lĂ©trehozza a vagont a kapott szĂ­nnel
 	 */
 	public TrainElement(Tile pos, Color color) {
 		this.pos = pos;
@@ -45,7 +45,7 @@ public class TrainElement {
 	}
 
 	/**
-	 * visszatér a vagon jelenlegi pozíciójával
+	 * visszatĂ©r a vagon jelenlegi pozĂ­ciĂłjĂˇval
 	 *
 	 * @return
 	 */
@@ -54,7 +54,7 @@ public class TrainElement {
 	}
 
 	/**
-	 * visszatér a vagon előző pozíciójával
+	 * visszatĂ©r a vagon elĹ‘zĹ‘ pozĂ­ciĂłjĂˇval
 	 *
 	 * @return
 	 */
@@ -76,7 +76,7 @@ public class TrainElement {
 	}
 
 	/**
-	 * megpróbálja leszállítani az utasokat, ha üres akkor felrakni
+	 * megprĂłbĂˇlja leszĂˇllĂ­tani az utasokat, ha ĂĽres akkor felrakni
 	 */
 	public void getOff() {
 		if (isEmpty()) {
@@ -90,14 +90,14 @@ public class TrainElement {
 	}
 
 	/**
-	 *  utasok felszállása
+	 *  utasok felszĂˇllĂˇsa
 	 */
 	public void getOn() {
 		this.empty = false;
 	}
 
 	/**
-	 * visszaadja a vagon színét
+	 * visszaadja a vagon szĂ­nĂ©t
 	 * 
 	 * @return
 	 */
@@ -106,7 +106,7 @@ public class TrainElement {
 	}
 
 	/**
-	 * igazzal tér vissza ha a vagon üres,
+	 * igazzal tĂ©r vissza ha a vagon ĂĽres,
 	 * 
 	 * @return
 	 */
@@ -115,14 +115,14 @@ public class TrainElement {
 	}
 
 	/**
-	 * csak a teszteléshez kell
+	 * csak a tesztelĂ©shez kell
 	 */
 	public void setEmpty() {
 		this.empty = true;
 	}
 
 	/**
-	 * igazzal tér vissza ha az összes ezt megelőző vagon üres. egyébként
+	 * igazzal tĂ©r vissza ha az Ă¶sszes ezt megelĹ‘zĹ‘ vagon ĂĽres. egyĂ©bkĂ©nt
 	 * hamissal
 	 * 
 	 * @return
@@ -132,7 +132,7 @@ public class TrainElement {
 	}
 
 	/**
-	 * Igazra állítja a változó értékét ha az összes ezt megelőző vagon üres
+	 * Igazra ĂˇllĂ­tja a vĂˇltozĂł Ă©rtĂ©kĂ©t ha az Ă¶sszes ezt megelĹ‘zĹ‘ vagon ĂĽres
 	 */
 	public void SetNextToFree() {
 		this.nextToFree = true;
