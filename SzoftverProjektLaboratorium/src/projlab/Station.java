@@ -6,18 +6,18 @@ package projlab;
 public class Station extends Tile {
 
     /**
-     * a Station színét tároljuk
+     * a Station szĂ­nĂ©t tĂˇroljuk
      */
     private Color color;
 
     /**
-     * Az állomás konstruktokiírja, hogy Station és a színét
+     * Az ĂˇllomĂˇs konstruktokiĂ­rja, hogy Station Ă©s a szĂ­nĂ©t
      *
-     * @param color Az állomás színe
+     * @param color Az ĂˇllomĂˇs szĂ­ne
      */
     public Station(Color color) {
         this.color = color;
-        //System.out.println("Station, szín:" + color);
+        //System.out.println("Station, szĂ­n:" + color);
     }
 
     public void printTile(int i, int j){
@@ -42,8 +42,8 @@ public class Station extends Tile {
     }
     
     /**
-     * visszaadja a Station színét, ami tökéletes az éppen az állomás előtt
-     * elhaladó kocsik színének az ellenőrzéséhez
+     * visszaadja a Station szĂ­nĂ©t, ami tĂ¶kĂ©letes az Ă©ppen az ĂˇllomĂˇs elĹ‘tt
+     * elhaladĂł kocsik szĂ­nĂ©nek az ellenĹ‘rzĂ©sĂ©hez
      *
      * @return
      */
@@ -52,10 +52,10 @@ public class Station extends Tile {
     }
 
     /**
-     * a rajta álló mozdony mozgatásáért felelős függvényt hívja meg, ha az még
-     * nem mozgott ebben a ciklusban megnézi, hogy a rajta lévő vonat előző
-     * pozíciója melyik mezővel egyezik meg és a másik irányba küldi tovább ha
-     * egyik irányba se tud a vonat továbbmenni -> ütközés
+     * a rajta ĂˇllĂł mozdony mozgatĂˇsĂˇĂ©rt felelĹ‘s fĂĽggvĂ©nyt hĂ­vja meg, ha az mĂ©g
+     * nem mozgott ebben a ciklusban megnĂ©zi, hogy a rajta lĂ©vĹ‘ vonat elĹ‘zĹ‘
+     * pozĂ­ciĂłja melyik mezĹ‘vel egyezik meg Ă©s a mĂˇsik irĂˇnyba kĂĽldi tovĂˇbb ha
+     * egyik irĂˇnyba se tud a vonat tovĂˇbbmenni -> ĂĽtkĂ¶zĂ©s
      *
      * @throws projlab.CrashException
      */
@@ -69,14 +69,14 @@ public class Station extends Tile {
              train.moveTrain(getDirA());
          }
          else
-             throw new CrashException("Ütközés történt, vesztettél!");
+             throw new CrashException("Utkozes tortent, vesztettel!");
     	}
     }
 
     /**
-     * beállítja a paraméterül kapott TrainElement-et a Tile TraimElement-jeként
-     * és megnézi, hogy megegyezik-e a színe a Station színével és ha igen,
-     * akkor meghívja a TrainElement getOff() függvényét
+     * beĂˇllĂ­tja a paramĂ©terĂĽl kapott TrainElement-et a Tile TraimElement-jekĂ©nt
+     * Ă©s megnĂ©zi, hogy megegyezik-e a szĂ­ne a Station szĂ­nĂ©vel Ă©s ha igen,
+     * akkor meghĂ­vja a TrainElement getOff() fĂĽggvĂ©nyĂ©t
      */
     @Override
     public void setElement(TrainElement e) {
