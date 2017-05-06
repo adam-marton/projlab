@@ -82,6 +82,7 @@ public class PlottingBoard {
 	
 	public void startGame(int n) throws FileNotFoundException {
 		deleteTrains();
+		clock = 0;
 		currentLevel = new Level(n);
 		Scanner scan = new Scanner(new File("data/maps/train" + n + ".txt"));
 	   	while(scan.hasNextLine())
@@ -126,10 +127,10 @@ public class PlottingBoard {
             JButton restart = new JButton("Ujrakezdes");
             JButton nextLevel = new JButton("Kovetkezo‘");
             JButton exit = new JButton("Kilepes");
-            if ("ĂśtkĂ¶zĂ©s tĂ¶rtĂ©nt, vesztettĂ©l!".equals(s) || "ZĂˇrva van a bejĂˇrat, vesztettĂ©l!".equals(s)) {
+            if ("Utkozes tortent, vesztettel!".equals(s) || "Alagutbejarat zarva, utkozes tortent, vesztettel!".equals(s)) {
                 footPanel.add(restart);
                 footPanel.add(exit);
-            } else if("NyertĂ©l".equals(s)) {
+            } else if("Nyertel!".equals(s)) {
                 footPanel.add(nextLevel);
                 footPanel.add(exit);
             }
@@ -140,7 +141,8 @@ public class PlottingBoard {
 	    	{
                         try {
                             frame.dispose();
-                            startGame(1);
+                            System.out.println(currentLevel.getLevelId());
+                            startGame(currentLevel.getLevelId());
                         } catch (FileNotFoundException ex) {
                             Logger.getLogger(PlottingBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                         }
