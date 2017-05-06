@@ -6,22 +6,22 @@ package projlab;
 public class TunnelEntrance extends Tile {
 
     /**
-     * Az alagútbejárat állapotát tárolja. (Nyitva/Zárva)
+     * Az alagĂştbejĂˇrat ĂˇllapotĂˇt tĂˇrolja. (Nyitva/ZĂˇrva)
      */
     private boolean state;
 
     /**
-     * Az alagút bejárat konstruktora, alap esetben zárva van az alagút.
+     * Az alagĂşt bejĂˇrat konstruktora, alap esetben zĂˇrva van az alagĂşt.
      */
     public TunnelEntrance() {
         this.state = false;
     }
     /**
-     * Visszaadja az alagútbejárat állapotát. True, ha nyitva van, false, ha zárva.
+     * Visszaadja az alagĂştbejĂˇrat ĂˇllapotĂˇt. True, ha nyitva van, false, ha zĂˇrva.
      * @return
      */
     public boolean isActive() {
-        /*System.out.println("Az alagút nyitva van?");
+        /*System.out.println("Az alagĂşt nyitva van?");
         Scanner s = new Scanner(System.in);
         String input = s.nextLine();
         if ("I".equals(input.toUpperCase())) {
@@ -35,7 +35,7 @@ public class TunnelEntrance extends Tile {
     }
 
     /**
-     * Nyitja, csukja az alagutat, ha a feltételek teljesülnek
+     * Nyitja, csukja az alagutat, ha a feltĂ©telek teljesĂĽlnek
      */
     @Override
     public void changeState() {
@@ -51,14 +51,14 @@ public class TunnelEntrance extends Tile {
     }
 
     /**
-     * Megvizsgálja, hogy nyitva van-e az alagút bejárata. Ha nyitva van,
-     * mozgatja a vonatot, ha zárva, exceptiont dob.
+     * MegvizsgĂˇlja, hogy nyitva van-e az alagĂşt bejĂˇrata. Ha nyitva van,
+     * mozgatja a vonatot, ha zĂˇrva, exceptiont dob.
      * @throws projlab.CrashException
      */
     @Override
     public void move() throws CrashException {
     	if (!this.isActive() && train != null) {
-            throw new CrashException("Zárva van a bejárat, vesztettél!");
+            throw new CrashException("Alagutbejarat zarva, utkozes tortent, vesztettel!");
         }
         if(train != null){
 	        if (train.getPrevPos() == getDirA() && getDirB()!=null && getDirB().isFree()) {
@@ -68,7 +68,7 @@ public class TunnelEntrance extends Tile {
 	            train.moveTrain(getDirA());
 	        }
 	        else
-	            throw new CrashException("Ütközés történt, vesztettél!");
+	            throw new CrashException("Utkozes tortent, vesztettel!");
 	        
 	        
         }
