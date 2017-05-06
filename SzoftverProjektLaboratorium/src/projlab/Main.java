@@ -41,6 +41,9 @@ public class Main {
 					pb.run();
 					pb.getLevel().printAll();
 					drawer.drawing();
+					if(pb.isWon()) {
+						pb.endGame("NyertĂ©l");
+					}
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
