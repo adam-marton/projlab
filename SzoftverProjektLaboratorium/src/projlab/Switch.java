@@ -6,12 +6,12 @@ package projlab;
 public class Switch extends Tile {
 
     /**
-     * a Switch aktív kimeneti iránya
+     * a Switch aktĂ­v kimeneti irĂˇnya
      */
     private Tile activeDir;
 
     /**
-     * a Switch harmadik lehetséges iránya
+     * a Switch harmadik lehetsĂ©ges irĂˇnya
      */
     private Tile cDir;
 
@@ -23,7 +23,7 @@ public class Switch extends Tile {
     }
     
     /**
-     * A switch konstruktora, megkapja paraméterként az aktív irányt **csak teszteléshez**
+     * A switch konstruktora, megkapja paramĂ©terkĂ©nt az aktĂ­v irĂˇnyt **csak tesztelĂ©shez**
      *
      * @param activeDir
      */
@@ -32,7 +32,7 @@ public class Switch extends Tile {
     }
 
     /**
-     * visszaadja az éppen aktuális kimeneti irányt
+     * visszaadja az Ă©ppen aktuĂˇlis kimeneti irĂˇnyt
      *
      * @return
      */
@@ -41,7 +41,7 @@ public class Switch extends Tile {
     }
 
     /**
-     * beállítja a harmadik irányt a kapott paraméternek
+     * beĂˇllĂ­tja a harmadik irĂˇnyt a kapott paramĂ©ternek
      *
      * @param t
      */
@@ -49,7 +49,7 @@ public class Switch extends Tile {
         cDir = t;
     }
     /**
-     * visszaadja a C kimeneti irányt
+     * visszaadja a C kimeneti irĂˇnyt
      *
      * @return
      */
@@ -58,7 +58,7 @@ public class Switch extends Tile {
     }
 
     /**
-     * a váltó állását változtatja meg
+     * a vĂˇltĂł ĂˇllĂˇsĂˇt vĂˇltoztatja meg
      */
     @Override
     public void changeState() {
@@ -94,10 +94,10 @@ public class Switch extends Tile {
     }
 
     /**
-     * a rajta álló mozdony mozgatásáért felelős függvényt hívja meg, ha az még
-     * nem mozgott ebben a ciklusban megnézi, hogy a rajta lévő vonat előző
-     * pozíciója melyik mezővel egyezik meg és a másik irányba küldi tovább ha
-     * egyik irányba se tud a vonat továbbmenni -> ütközés
+     * a rajta ĂˇllĂł mozdony mozgatĂˇsĂˇĂ©rt felelĹ‘s fĂĽggvĂ©nyt hĂ­vja meg, ha az mĂ©g
+     * nem mozgott ebben a ciklusban megnĂ©zi, hogy a rajta lĂ©vĹ‘ vonat elĹ‘zĹ‘
+     * pozĂ­ciĂłja melyik mezĹ‘vel egyezik meg Ă©s a mĂˇsik irĂˇnyba kĂĽldi tovĂˇbb ha
+     * egyik irĂˇnyba se tud a vonat tovĂˇbbmenni -> ĂĽtkĂ¶zĂ©s
      * @throws projlab.CrashException
      */
     @Override
@@ -119,7 +119,7 @@ public class Switch extends Tile {
 	        	 train.moveTrain(getDirA());
 	         }
 	         else
-	             throw new CrashException("Ütközés történt, vesztettél!");
+	             throw new CrashException("Utkozes tortent, vesztettel!");
     	}
     }
 }
