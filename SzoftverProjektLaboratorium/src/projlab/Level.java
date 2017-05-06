@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Level {
 
 	/**
-	 * Konstruktor létrehozza a mezőket
+	 * Konstruktor lĂ©trehozza a mezĹ‘ket
 	 * @throws FileNotFoundException 
 	 */
 	public void printAll(){
@@ -26,8 +26,8 @@ public class Level {
 	public Level(int id) throws FileNotFoundException {
 		this.id = id;
 		TunnelEntranceCounter.getInstance().addCounter(0);
-		tiles = new Tile[40][20]; // TODO ez egy külső forrásból fog történni
-									// jelenleg nincs implementálva
+		tiles = new Tile[40][20]; // TODO ez egy kĂĽlsĹ‘ forrĂˇsbĂłl fog tĂ¶rtĂ©nni
+									// jelenleg nincs implementĂˇlva
 		Scanner scanC;
 		scanC = new Scanner(new File("data/maps/map" + id + ".txt"));
 		while (scanC.hasNextLine()) {
@@ -70,30 +70,30 @@ public class Level {
 	}
 
 	/**
-	 * A mezőket tároló tömb
+	 * A mezĹ‘ket tĂˇrolĂł tĂ¶mb
 	 */
 	private final Tile[][] tiles;
 
 	/**
-	 * A szint száma
+	 * A szint szĂˇma
 	 */
 	private int id;
 
 	/**
-	 * @return visszadja a szint számát
+	 * @return visszadja a szint szĂˇmĂˇt
 	 */
 	public int getLevelId() {
 		return id;
 	}
 	/**
-	 * @return visszaadegy mezőt
+	 * @return visszaadegy mezĹ‘t
 	 */
 	public Tile getTile(int x, int y) {
 		return tiles[x][y];
 	}
 
 	/**
-	 * Beállítja a kapcsolatokat a mezők között
+	 * BeĂˇllĂ­tja a kapcsolatokat a mezĹ‘k kĂ¶zĂ¶tt
 	 */
 	public void setReferences(int mapID) {
 		Scanner scanC;
@@ -372,7 +372,7 @@ public class Level {
 	}
 
 	/**
-	 * Megvizsgálja, hogy volt-e ütközés Mozgathatóvá teszi a mezőket
+	 * MegvizsgĂˇlja, hogy volt-e ĂĽtkĂ¶zĂ©s MozgathatĂłvĂˇ teszi a mezĹ‘ket
 	 *
 	 * @throws CrashException
 	 */
@@ -381,7 +381,7 @@ public class Level {
 			for (int j = 0; j < 20; j++) {
 				if (tiles[i][j] != null) {
 					if (tiles[i][j].checkCrash()) {
-						throw new CrashException("Ütközés történt, vesztettél!");
+						throw new CrashException("ĂśtkĂ¶zĂ©s tĂ¶rtĂ©nt, vesztettĂ©l!");
 					}
 					tiles[i][j].enableMove();
 				}
@@ -390,8 +390,8 @@ public class Level {
 	}
 
 	/**
-	 * Mozgatja a mezőkön található mozdonyokat Ha hibát detektál akkor azt
-	 * tovább dobja
+	 * Mozgatja a mezĹ‘kĂ¶n talĂˇlhatĂł mozdonyokat Ha hibĂˇt detektĂˇl akkor azt
+	 * tovĂˇbb dobja
 	 *
 	 * @throws projlab.CrashException
 	 */
@@ -406,10 +406,10 @@ public class Level {
 
 	/**
 	 * @param x
-	 *            koordináta
+	 *            koordinĂˇta
 	 * @param y
-	 *            koordináta A grafikus interfészen egy mezőre kattintva
-	 *            meghívja annak change state függvényét
+	 *            koordinĂˇta A grafikus interfĂ©szen egy mezĹ‘re kattintva
+	 *            meghĂ­vja annak change state fĂĽggvĂ©nyĂ©t
 	 */
 	public void changeState(int x, int y) {
 		if (tiles[x][y] != null)
