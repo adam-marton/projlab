@@ -133,6 +133,7 @@ public class PlottingBoard {
             } else if("Nyertel!".equals(s)) {
                 footPanel.add(nextLevel);
                 footPanel.add(exit);
+                if(currentLevel.getLevelId() > 2) nextLevel.setEnabled(false);
             }
             frame.setVisible(true);
             restart.addActionListener(new ActionListener()
