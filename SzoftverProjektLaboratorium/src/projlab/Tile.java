@@ -6,28 +6,28 @@ package projlab;
 public abstract class Tile {
 
 	/**
-	 * A mező egyik szomszédja.
+	 * A mezĹ‘ egyik szomszĂ©dja.
 	 */
 	protected Tile aDir;
 
 	/**
-	 * A mező másik szomszédja.
+	 * A mezĹ‘ mĂˇsik szomszĂ©dja.
 	 */
 	protected Tile bDir;
 
 	/**
-	 * A mezőn lévő mozdony.
+	 * A mezĹ‘n lĂ©vĹ‘ mozdony.
 	 */
 	protected Train train;
 
 	/**
-	 * A mezőn lévő vonatelem.
+	 * A mezĹ‘n lĂ©vĹ‘ vonatelem.
 	 */
 	protected TrainElement trainElement;
 
 	/**
-	 * Megmondja, hogy mozgatható-e a mezőn lévő vonat. Ez azért fontos, hogy
-	 * egy mozdonyt ne lehessen egy körben kétszer mozgatni.
+	 * Megmondja, hogy mozgathatĂł-e a mezĹ‘n lĂ©vĹ‘ vonat. Ez azĂ©rt fontos, hogy
+	 * egy mozdonyt ne lehessen egy kĂ¶rben kĂ©tszer mozgatni.
 	 */
 	protected boolean moveable;
 
@@ -38,7 +38,7 @@ public abstract class Tile {
 	}
 
 	/**
-	 * Beállítja az aDir field értékét a kapott Tile értékére.
+	 * BeĂˇllĂ­tja az aDir field Ă©rtĂ©kĂ©t a kapott Tile Ă©rtĂ©kĂ©re.
 	 * 
 	 * @param t
 	 */
@@ -47,7 +47,7 @@ public abstract class Tile {
 	}
 
 	/**
-	 * Beállítja a bDir field értékét a kapott Tile értékére.
+	 * BeĂˇllĂ­tja a bDir field Ă©rtĂ©kĂ©t a kapott Tile Ă©rtĂ©kĂ©re.
 	 * 
 	 * @param t
 	 */
@@ -56,7 +56,7 @@ public abstract class Tile {
 	}
 
 	/**
-	 * Visszaadja az aDir field értékét.
+	 * Visszaadja az aDir field Ă©rtĂ©kĂ©t.
 	 * 
 	 * @return
 	 */
@@ -65,7 +65,7 @@ public abstract class Tile {
 	}
 
 	/**
-	 * Visszaadja a bDir field értékét.
+	 * Visszaadja a bDir field Ă©rtĂ©kĂ©t.
 	 * 
 	 * @return
 	 */
@@ -74,7 +74,7 @@ public abstract class Tile {
 	}
 
 	/**
-	 * Beállítja a train field értékét a kapott Train értékére.
+	 * BeĂˇllĂ­tja a train field Ă©rtĂ©kĂ©t a kapott Train Ă©rtĂ©kĂ©re.
 	 * 
 	 * @param t
 	 */
@@ -84,7 +84,7 @@ public abstract class Tile {
 	}
 
 	/**
-	 * Beállítja a trainElement field értékét a kapott TrainElement értékére.
+	 * BeĂˇllĂ­tja a trainElement field Ă©rtĂ©kĂ©t a kapott TrainElement Ă©rtĂ©kĂ©re.
 	 * 
 	 * @param e
 	 */
@@ -93,12 +93,12 @@ public abstract class Tile {
 	}
 
 	/**
-	 * Megvizsgálja, hogy történt-e ütközés. Jelen esetben bekérjük a
-	 * tesztelőtől, hogy van-e a vonat előtt akadály, ennek függvényében döntjük
-	 * el. Ha van valami, akkor történik ütközés, ha nincs, akkor megy tovább a
+	 * MegvizsgĂˇlja, hogy tĂ¶rtĂ©nt-e ĂĽtkĂ¶zĂ©s. Jelen esetben bekĂ©rjĂĽk a
+	 * tesztelĹ‘tĹ‘l, hogy van-e a vonat elĹ‘tt akadĂˇly, ennek fĂĽggvĂ©nyĂ©ben dĂ¶ntjĂĽk
+	 * el. Ha van valami, akkor tĂ¶rtĂ©nik ĂĽtkĂ¶zĂ©s, ha nincs, akkor megy tovĂˇbb a
 	 * vonat.
 	 * 
-	 * @return True, ha történik ütközés. False, ha nem.
+	 * @return True, ha tĂ¶rtĂ©nik ĂĽtkĂ¶zĂ©s. False, ha nem.
 	 */
 	public boolean checkCrash() {
 		if (trainElement != null && train != null)
@@ -107,7 +107,7 @@ public abstract class Tile {
 	}
 
 	/**
-	 * Visszaadja a moveable field értékét.
+	 * Visszaadja a moveable field Ă©rtĂ©kĂ©t.
 	 * 
 	 * @return
 	 */
@@ -116,7 +116,7 @@ public abstract class Tile {
 	}
 
 	/**
-	 * @return visszadja hogy van-e mozdony a mezőn
+	 * @return visszadja hogy van-e mozdony a mezĹ‘n
 	 */
 	public boolean isFree() {
 		return (null == train && null == trainElement);
@@ -126,14 +126,14 @@ public abstract class Tile {
 		
 	}
 	/**
-	 * Üres metódus, a leszármazottak felülírják, ha szükséges.
+	 * Ăśres metĂłdus, a leszĂˇrmazottak felĂĽlĂ­rjĂˇk, ha szĂĽksĂ©ges.
 	 */
 	public void changeState() {
 		// empty on purpose
 	}
 
 	/**
-	 * A léptető függvény a mezők felülírják
+	 * A lĂ©ptetĹ‘ fĂĽggvĂ©ny a mezĹ‘k felĂĽlĂ­rjĂˇk
 	 * 
 	 * @throws projlab.CrashException
 	 */
@@ -142,7 +142,7 @@ public abstract class Tile {
 	}
 
 	/**
-	 * A moveable field értékét igazra állítja.
+	 * A moveable field Ă©rtĂ©kĂ©t igazra ĂˇllĂ­tja.
 	 */
 	public void enableMove() {
 		this.moveable = true;
